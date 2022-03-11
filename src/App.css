@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+.grid-wrap {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(400px, 800px) 1fr;
+    grid-template-rows: 120px minmax(800px, auto);
+    margin-top: 60px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    background-color: rgb(227, 161, 161);
+    border: 1px solid grey;
+    border-radius: 10px 10px 0 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-body {
+    grid-column-start: 2;
+    grid-row-start: 2;
+
+    display: grid;
+    grid-template-columns: 150px 1fr;
+
+    border: 1px solid grey;
+    background-color: #f1f1f1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbar {
+    grid-column-start: 1;
+
+    border-right: 1px solid grey;
+    margin: 10px;
+    margin-top: 20px;
+}
+.navbar > div > a {
+    text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content {
+    grid-column-start: 2;
+
+    margin: 10px;
+    margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*.footer {*/
+/*    grid-column-start: 2;*/
+/*    grid-row-start: 5;*/
+/*    background-color: darkgrey;*/
+/*}*/
+
+.logo {
+    border-radius: 10px 10px 0 0;
+    width:100%;
+    height: 300px;
+    background-color: rgb(173, 172, 172);
+    background-image: url('https://avatanplus.com/files/resources/original/56ffca99c57d3153d72f68d1.png');
+    background-position:center;
+    background-repeat: no-repeat;
 }
