@@ -5,7 +5,7 @@ type PostPropsType = {
     title:string
     name:string
     like:number
-    message
+    message:string
 }
 
 export const Post = (props:PostPropsType) => {
