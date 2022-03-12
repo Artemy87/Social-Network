@@ -1,0 +1,20 @@
+.post {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    background-color: #a2e282;
+    margin: 10px;
+    border-radius: 15px;
+}
+.avatar{
+    grid-column-start: 1;
+    margin: 10px;
+}
+.avatar > img {
+    width: 100px;
+    border-radius: 50%;
+}
+.body{
+    grid-column-start: 2;
+    margin: 10px;
+}
