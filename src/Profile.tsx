@@ -1,15 +1,16 @@
 import React from "react";
+import styles from './Profile.module.css';
 
 export const Profile = () => {
     return (
-        <div className='main-content'>
+        <div className={styles.content}>
             <div>
                 <img src="" alt="avatarka"/>
             </div>
             <div>
                 ava + description
             </div>
-            <div>
+            <div className='posts'>
                 My post
                 <div>
                     New Post

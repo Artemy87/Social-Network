@@ -1,0 +1,6 @@
+.content {
+    grid-column-start: 2;
+
+    margin: 10px;
+    margin-top: 20px;
+}

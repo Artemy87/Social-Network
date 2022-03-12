@@ -1,0 +1,9 @@
+.navbar {
+    grid-column-start: 1;
+
+    border-right: 1px solid grey;
+    margin: 20px 10px 10px 10px;
+}
+.navbar > div > a {
+    text-decoration: none;
+}
