@@ -1,5 +1,28 @@
 .myPosts {
     padding: 10px;
-    background-color: #39a539;
-    border-radius: 15px;
+    height: 100%;
+}
+
+textarea {
+    background-color: #f3f3f3;
+}
+
+.postForm {
+    background-color: #bcc9bc;
+    padding: 10px;
+}
+
+.sendMessageWindow {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.sendMessageWindow, textarea, button{
+    border-radius: 5px;
+}
+
+.sendMessageWindow button {
+    border: 2px solid grey;
+    cursor: pointer;
 }

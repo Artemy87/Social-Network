@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
 
-    background-color: #a2e282;
+    background-color: #789bc9;
     margin: 10px;
     border-radius: 15px;
 }
@@ -11,7 +11,7 @@
     margin: 10px;
 }
 .avatar > img {
-    width: 100px;
+    width: 60px;
     border-radius: 50%;
 }
 .body{

@@ -28,6 +28,7 @@
 
 .navbar {
     grid-area: navbar;
+    grid-template-rows: 1fr;
     background-color: #bcc9bc;
     border-radius: 0 0 0 13px;
 }
@@ -36,4 +37,5 @@
     grid-area: content;
     background-color: #f3f3f3;
     border-radius: 0 0 13px 0;
+
 }
