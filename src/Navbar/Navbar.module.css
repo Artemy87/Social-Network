@@ -3,7 +3,6 @@
     flex-direction: column;
 
     margin: 20px 10px 10px 10px;
-    /*text-decoration: none;*/
 }
 
 .navbar a {
@@ -12,5 +11,6 @@
 }
 
 .navbar a:hover {
-    color: whitesmoke;
+    font-weight: bold;
+    color: forestgreen;
 }

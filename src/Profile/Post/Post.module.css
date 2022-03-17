@@ -1,9 +1,9 @@
 .post {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 100px auto;
 
-    background-color: #789bc9;
-    margin: 10px;
+    background-color: #b1c29f;
+    margin: 15px 10px 0 10px;
     border-radius: 15px;
 }
 .avatar{
@@ -11,7 +11,7 @@
     margin: 10px;
 }
 .avatar > img {
-    width: 60px;
+    height: 50px;
     border-radius: 50%;
 }
 .body{

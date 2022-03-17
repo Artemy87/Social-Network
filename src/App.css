@@ -10,32 +10,35 @@
     "header header"
     "navbar content";
 
-    grid-template-columns: minmax(120px, 180px) minmax(270px, 600px);
-    grid-template-rows: 110px minmax(600px, auto);
+    grid-template-columns: 140px minmax(270px, 640px);
+    grid-template-rows: 100px 700px;
 
     justify-content: center;
-    margin: 60px 10px 0 10px;
+    margin: 60px 10px 10px 10px;
     padding: 0;
-    border-radius: 15px;
-    border: 1px solid #a09f9f;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
 }
 
 .header {
     grid-area: header;
-    background-color: #93a193;
-    border-radius: 15px 15px 0 0;
+    /*background-color: #cbcbcb;*/
+    background-color: #789bc9;
+    border-radius: 10px 10px 0 0;
 }
 
 .navbar {
     grid-area: navbar;
     grid-template-rows: 1fr;
-    background-color: #bcc9bc;
-    border-radius: 0 0 0 13px;
+    /*background-color: #fafafa;*/
+    background-color: #fafafa;
+    border-radius: 0 0 0 10px;
 }
 
 .content {
     grid-area: content;
-    background-color: #f3f3f3;
-    border-radius: 0 0 13px 0;
+    background-color: #fafafa;
+    border: 1px solid #d1d1d1;
+    border-radius: 0 0 10px 0;
 
 }

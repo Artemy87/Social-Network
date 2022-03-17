@@ -1,15 +1,20 @@
 .myPosts {
+    display: grid;
+    grid-template-rows: 600px auto;
+}
+
+.post {
+}
+
+.postForm {
+    background-color: #789bc9;
     padding: 10px;
-    height: 100%;
+    margin-top: 10px;
+    justify-content: flex-end;
 }
 
 textarea {
     background-color: #f3f3f3;
-}
-
-.postForm {
-    background-color: #bcc9bc;
-    padding: 10px;
 }
 
 .sendMessageWindow {
