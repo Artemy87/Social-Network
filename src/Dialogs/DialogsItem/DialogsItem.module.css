@@ -1,0 +1,25 @@
+.dialogs
+{
+    padding-top: 10px;
+    border-right: 1px solid #d1d1d1;
+}
+.dialog
+{
+    padding: 10px;
+    padding-left: 10px;
+}
+a
+{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dialog:hover
+{
+    cursor: pointer;
+    background-color: #dbdbdb;
+}
+.dialog:active
+{
+    background-color: #789bc9;
+}

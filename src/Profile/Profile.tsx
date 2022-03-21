@@ -1,13 +1,18 @@
-import React from "react";
+import React from 'react';
+import {MyPosts} from './MyPosts/MyPosts';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css';
-import {MyPosts} from "./MyPosts/MyPosts";
+import {PostsPageType} from "../App";
 
-export const Profile = () => {
+type ProfilePropsType = {
+    postsPage: PostsPageType
+}
+
+export const Profile = (props:ProfilePropsType) => {
     return (
         <div className={styles.content}>
-            {/*<div><img src="" alt="avatarka"/></div>*/}
-            <div>Avatarka + description</div>
-            <MyPosts/>
+            <ProfileInfo />
+            <MyPosts postsPage={props.postsPage}/>
         </div>
     )
 }

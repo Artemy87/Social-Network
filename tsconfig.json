@@ -19,9 +19,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "compilerOptions": {
-      "plugins": [{ "name": "typescript-plugin-css-modules" }]
-    }
   },
   "include": [
     "src"

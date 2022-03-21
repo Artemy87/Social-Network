@@ -1,14 +1,23 @@
-import React from "react";
-import {Post} from "../Post/Post";
+import React from 'react';
+import {Post} from './Post/Post';
 import styles from './MyPosts.module.css';
+import {PostsPageType} from '../../App';
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    postsPage: PostsPageType
+}
+
+export const MyPosts = (props:MyPostsPropsType) => {
+
+    const post = props.postsPage.posts.map(post => {
+        return (
+            <Post key={post.id} post={post}/>
+        )
+    })
     return (
         <div className={styles.myPosts}>
             <div className={styles.post}>
-                <Post title='Post1' name='Alex' message='Hi! How are you?' like={8}/>
-                <Post title='Post2' name='Anna' message='Hello! My number +231314' like={33}/>
-                <Post title='Post3' name='Victor' message='My names Victor' like={15}/>
+                {post}
             </div>
             <div className={styles.postForm}>
             <div className={styles.sendMessageWindow}>

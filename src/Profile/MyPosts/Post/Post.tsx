@@ -1,24 +1,22 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from './Post.module.css'
+import {PostsType} from "../../../App";
 
 type PostPropsType = {
-    title:string
-    name:string
-    like:number
-    message:string
+    post: PostsType
 }
 
-export const Post = (props:PostPropsType) => {
+export const Post:FC<PostPropsType> = ({post}) => {
     return (
         <div className={styles.post}>
             <div className={styles.avatar}>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6vjzwZaBf6bKmbl7I00WbZ9RPOlriawksgQ&usqp=CAU" alt=""/>
-                <div>likes: {props.like}</div>
+                <div>likes: {post.like}</div>
             </div>
             <div className={styles.body}>
-                <div>{props.title}</div>
-                <div>{props.name}</div>
-                <div>{props.message}</div>
+                <div>{post.name}</div>
+                <div>{post.message}</div>
+                <div>{post.time}</div>
             </div>
         </div>
     )
