@@ -1,15 +1,14 @@
-.container
-{
+.container {
     word-wrap: break-word; /*текст не выходит за рамки контейнера*/
 }
-.title
-{
+
+.title {
     font-size: 1.2rem;
     padding: 10px;
     background-color: #9cb6d9;
 }
-.dialogsContainer
-{
+
+.dialogsContainer {
     display: grid;
     grid-template-columns: 140px 1fr;
     grid-template-rows: 650px;

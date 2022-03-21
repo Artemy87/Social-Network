@@ -1,15 +1,15 @@
-import React from 'react';
-import {Post} from './Post/Post';
+import React, { FC } from 'react';
+import { Post } from './Post/Post';
 import styles from './MyPosts.module.css';
-import {PostsPageType} from '../../App';
+import { PostsType } from '../../Redux/state';
 
 type MyPostsPropsType = {
-    postsPage: PostsPageType
+    posts:PostsType[];
 }
 
-export const MyPosts = (props:MyPostsPropsType) => {
+export const MyPosts:FC<MyPostsPropsType> = ({ posts }) => {
 
-    const post = props.postsPage.posts.map(post => {
+    const post = posts.map(post => {
         return (
             <Post key={post.id} post={post}/>
         )

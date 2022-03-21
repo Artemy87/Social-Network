@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Message/Message';
-import {DialogsPageType} from '../App';
+import {DialogsPageType} from '../Redux/state';
 import styles from './Dialogs.module.css'
 
 
