@@ -1,8 +1,12 @@
+.navbarContainer {
+    margin: 15px;
+}
+
 .navbar {
     display: flex;
     flex-direction: column;
 
-    margin: 20px 10px 10px 10px;
+    margin: 20px 0 10px 0;
 }
 
 .navbar a {
@@ -13,4 +17,22 @@
 .navbar a:hover {
     font-weight: bold;
     color: forestgreen;
+}
+
+.friends {
+    display: flex;
+    width: 230px;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.titleFriends {
+    font-size: 1.4em;
+    margin-top: 30px;
+    padding: 10px
+}
+
+img {
+    padding: 5px;
+    height: 50px;
 }

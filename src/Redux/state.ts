@@ -20,9 +20,12 @@ export type PostsType = {
 export interface PostsPageType {
     posts:PostsType[]
 }
+// type SidebarType = {}
+
 export interface RootStateType {
-    dialogsPage:DialogsPageType
-    profilePage:PostsPageType
+    dialogsPage: DialogsPageType
+    profilePage: PostsPageType
+    // sidebar: SidebarType
 }
 
 let state:RootStateType = {
@@ -42,11 +45,16 @@ let state:RootStateType = {
     },
     profilePage: {
         posts: [
-            {id: 1, name: 'A', message: 'Hi! How are you?', time: '8:26', like: 8},
-            {id: 2, name: 'B', message: 'My number +231314', time: '3:43', like: 33},
-            {id: 3, name: 'C', message: 'My names Victor', time: '09:10', like: 15},
+            {id: 1, name: 'Oleg', message: 'Hi! How are you?', time: '8:26', like: 8},
+            {id: 2, name: 'Kolya', message: 'My number +231314', time: '3:43', like: 33},
+            {id: 3, name: 'Vica', message: 'My names Victor', time: '09:10', like: 15},
+            // {id: 4, name: 'Kirill', message: 'My names Victor', time: '09:10', like: 15},
+            // {id: 5, name: 'Sasha', message: 'My names Victor', time: '09:10', like: 15},
+            // {id: 6, name: 'Ludmila', message: 'My names Victor', time: '09:10', like: 15},
+            // {id: 7, name: 'Semen', message: 'My names Victor', time: '09:10', like: 15},
         ]
-    }
+    },
+    // sidebar: {}
 }
 
 export default state;
