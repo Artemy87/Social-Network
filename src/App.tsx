@@ -11,8 +11,11 @@ import { Music } from './Music/Music';
 import { Settings } from './Settings/Settings';
 import { RootStateType } from "./Redux/state";
 
+type StateType = {
+    state: RootStateType
+}
 
-const App:FC<RootStateType> = ({ profilePage, dialogsPage }) => {
+const App:FC<StateType> = ({ state }) => {
     return (
         <BrowserRouter>
             <div className='grid-wrap'>
@@ -21,12 +24,12 @@ const App:FC<RootStateType> = ({ profilePage, dialogsPage }) => {
                         <Header/>
                     </header>
                     <nav className='navbar'>
-                        <Navbar/>
+                        <Navbar sidebar={state.sidebar} />
                     </nav>
                     <div className='content'>
                         <Switch>
-                            <Route exact path='/profile' render={() => <Profile profilePage={ profilePage }/>} />
-                            <Route path='/dialogs' render={() => <Dialogs dialogsPage={ dialogsPage }/> } />
+                            <Route exact path='/profile' render={() => <Profile profilePage={ state.profilePage }/>} />
+                            <Route path='/dialogs' render={() => <Dialogs dialogsPage={ state.dialogsPage }/> } />
                             <Route path='/news' render={() => <News />} />
                             <Route path='/music' render={() => <Music />} />
                             <Route path='/settings' render={() => <Settings />} />

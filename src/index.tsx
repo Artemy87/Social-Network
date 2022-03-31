@@ -8,8 +8,10 @@ import state from './Redux/state';
 
 ReactDOM.render(
     <App
-        dialogsPage={ state.dialogsPage }
-        profilePage={ state.profilePage }
+        state={state}
+        // dialogsPage={ state.dialogsPage }
+        // profilePage={ state.profilePage }
+        // sidebar={state.sidebar}
     />,
     document.getElementById('root')
 );

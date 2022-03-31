@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {ChangeEvent, FC, useState} from 'react';
 import { Post } from './Post/Post';
 import styles from './MyPosts.module.css';
 import { PostsType } from '../../Redux/state';
@@ -14,6 +14,7 @@ export const MyPosts:FC<MyPostsPropsType> = ({ posts }) => {
             <Post key={post.id} post={post}/>
         )
     })
+
     return (
         <div className={styles.myPosts}>
             <div className={styles.post}>
@@ -22,7 +23,7 @@ export const MyPosts:FC<MyPostsPropsType> = ({ posts }) => {
             <div className={styles.postForm}>
             <div className={styles.sendMessageWindow}>
                 <div>My post</div>
-                <textarea name="" id=""></textarea>
+                <input />
                 <button>add post</button>
             </div>
             </div>
