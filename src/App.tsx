@@ -9,13 +9,14 @@ import { Dialogs } from './Dialogs/Dialogs';
 import { News } from './News/News';
 import { Music } from './Music/Music';
 import { Settings } from './Settings/Settings';
-import { RootStateType } from "./Redux/state";
+import {RootStateType} from "./Redux/state";
 
 type StateType = {
     state: RootStateType
+    addPost:(postMessage:string) => void
 }
 
-const App:FC<StateType> = ({ state }) => {
+const App = (props:StateType) => {
     return (
         <BrowserRouter>
             <div className='grid-wrap'>
@@ -24,22 +25,20 @@ const App:FC<StateType> = ({ state }) => {
                         <Header/>
                     </header>
                     <nav className='navbar'>
-                        <Navbar sidebar={state.sidebar} />
+                        <Navbar sidebar={props.state.sidebar} />
                     </nav>
                     <div className='content'>
                         <Switch>
-                            <Route exact path='/profile' render={() => <Profile profilePage={ state.profilePage }/>} />
-                            <Route path='/dialogs' render={() => <Dialogs dialogsPage={ state.dialogsPage }/> } />
+                            <Route exact path='/profile' render={() => <Profile addPost={props.addPost} profilePage={ props.state.profilePage }/>} />
+                            <Route path='/dialogs' render={() => <Dialogs dialogsPage={ props.state.dialogsPage }/> } />
                             <Route path='/news' render={() => <News />} />
                             <Route path='/music' render={() => <Music />} />
                             <Route path='/settings' render={() => <Settings />} />
-
                         </Switch>
                     </div>
                 </div>
             </div>
         </BrowserRouter>
-
     );
 }
 

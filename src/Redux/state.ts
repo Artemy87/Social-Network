@@ -54,12 +54,8 @@ let state:RootStateType = {
     profilePage: {
         posts: [
             {id: v1(), name: 'Oleg', message: 'Hi! How are you?', time: '8:26', like: 8},
-            {id: v1(), name: 'Kolya', message: 'My number +231314', time: '3:43', like: 33},
-            {id: v1(), name: 'Vica', message: 'My names Victor', time: '09:10', like: 15},
-            // {id: v1(), name: 'Kirill', message: 'My names Victor', time: '09:10', like: 15},
-            // {id: v1(), name: 'Sasha', message: 'My names Victor', time: '09:10', like: 15},
-            // {id: v1(), name: 'Ludmila', message: 'My names Victor', time: '09:10', like: 15},
-            // {id: v1(), name: 'Semen', message: 'My names Victor', time: '09:10', like: 15},
+            {id: v1(), name: 'Kolya', message: 'Hello! My number +231314', time: '3:43', like: 33},
+            {id: v1(), name: 'Vica', message: 'My names Vica', time: '09:10', like: 15},
         ]
     },
     sidebar: {
@@ -71,6 +67,15 @@ let state:RootStateType = {
     }
 }
 
-
+export const addPost = (postMessage:string) => {
+    const newPost = {
+        id: v1(),
+        name: 'Vica',
+        message: postMessage,
+        time: '09:10',
+        like: 15
+    }
+    state.profilePage.posts.push(newPost)
+}
 
 export default state;

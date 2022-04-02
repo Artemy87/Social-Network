@@ -18,3 +18,8 @@
     grid-column-start: 2;
     margin: 10px;
 }
+
+.name {
+    margin-bottom: 10px;
+    color: #ed00ff;
+}

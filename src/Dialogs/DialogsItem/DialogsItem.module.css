@@ -1,11 +1,11 @@
 .dialogs {
-    padding-top: 10px;
     border-right: 1px solid #d1d1d1;
+    height: 640px;
 }
 
 .dialog {
-    padding: 10px;
-    padding-left: 10px;
+    padding: 8px 8px 8px 17px;
+    border-bottom: 1px solid #d1d1d1;
 }
 
 a {

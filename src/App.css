@@ -20,26 +20,27 @@
     margin: 60px 10px 10px 10px;
     padding: 0;
     border-radius: 10px;
-    border: 1px solid #d1d1d1;
+    /*border: 1px solid #d1d1d1;*/
 }
 
 .header {
     grid-area: header;
-    background-color: #789bc9;
+    background-color: #7cac79;
     border-radius: 10px 10px 0 0;
 }
 
 .navbar {
     grid-area: navbar;
     grid-template-rows: 1fr;
-    background-color: #fafafa;
-    border-radius: 0 0 0 10px;
+    background-color: #bfd7bd;
+    border-radius: 0 0 0 15px;
 }
 
 .content {
     grid-area: content;
     background-color: #fafafa;
-    border: 1px solid #d1d1d1;
+    /*border: 1px solid #d1d1d1;*/
     border-radius: 0 0 10px 0;
+    position: relative;
 
 }

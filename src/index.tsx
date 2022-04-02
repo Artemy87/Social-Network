@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import App from './App';
-import state from './Redux/state';
+import state, {addPost} from './Redux/state';
 
 
-ReactDOM.render(
-    <App
-        state={state}
-        // dialogsPage={ state.dialogsPage }
-        // profilePage={ state.profilePage }
-        // sidebar={state.sidebar}
-    />,
-    document.getElementById('root')
-);
+let rerenderEntireTree = () => {
+    ReactDOM.render(
+        <App
+            state={state}
+            addPost={addPost}
+        />,
+        document.getElementById('root')
+    )
+}
+
+rerenderEntireTree()
