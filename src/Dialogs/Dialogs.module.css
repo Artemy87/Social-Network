@@ -1,7 +1,7 @@
 .dialogsContainer {
     display: grid;
     grid-template-columns: 140px 1fr;
-    grid-template-rows: 640px auto;
+    grid-template-rows: 648px auto;
 
     word-wrap: break-word;
 }

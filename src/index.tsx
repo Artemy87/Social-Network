@@ -15,3 +15,5 @@ let rerenderTree = () => {
 
 store.subscribe(rerenderTree)
 rerenderTree();
+
+// store.subscribe(rerenderEntireTree);

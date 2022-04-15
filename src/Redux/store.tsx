@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {profileReducer, ProfileTypes} from "./profileReducer";
+import {dialogsReducer, DialogsType} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
 
 export type DialogType = {
     id: string
@@ -41,26 +44,11 @@ export type StoreType = {
     _callSubscribe: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void
 }
 
-export type ActionsTypes =
-    ReturnType<typeof addPostCreator> |
-    ReturnType<typeof updatePostTextChangeCreator> |
-    ReturnType<typeof sendMessageCreator> |
-    ReturnType<typeof updateNewMessageBodyCreator>;
+export type ActionsTypes = ProfileTypes | DialogsType
 
-
-export const addPostCreator = () => ({type: 'ADD-POST'}) as const;
-export const updatePostTextChangeCreator = (text:string) => ({
-    type: "UPDATE-NEW-POST-TEXT",
-    newText: text
-}) as const;
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'}) as const;
-export const updateNewMessageBodyCreator = (text:string) => ({
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: text
-}) as const;
 
 export let store: StoreType = {
     _state: {
@@ -110,34 +98,11 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsType = {
-                id: v1(),
-                name: 'Vica',
-                message: this._state.profilePage.newPostText,
-                time: '09:10',
-                like: 15
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscribe()
 
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscribe()
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        } else if(action.type === 'SEND-MESSAGE') {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: this._state.dialogsPage.newMessageBody
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageBody = ''
-            this._callSubscribe()
-
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._callSubscribe()
-        }
+        this._callSubscribe();
     }
 }

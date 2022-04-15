@@ -6,7 +6,8 @@ import {DialogsPageType} from '../Redux/state';
 import s from './Dialogs.module.css'
 import SuperButton from "../SuperButton/SuperButton";
 import SuperInputText from "../SuperInputText/SuperInputText";
-import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../Redux/store";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../Redux/dialogsReducer";
+import {ActionsTypes} from "../Redux/store";
 
 
 type DialogsPropsType = {
@@ -21,7 +22,7 @@ export const Dialogs:FC<DialogsPropsType> = ({
     newMessageBody
 }) => {
 
-    const onClickMessageHandler = () => {
+    const onSendMessageHandler = () => {
         dispatch(sendMessageCreator())
     }
 
@@ -48,7 +49,7 @@ export const Dialogs:FC<DialogsPropsType> = ({
                     value={newMessageBody}
                     onChange={onChangeMessageHandler}
                     onKeyPress={onKeyPressMessageHandler}/>
-                <SuperButton onClick={onClickMessageHandler}>add message</SuperButton>
+                <SuperButton onClick={onSendMessageHandler}>add message</SuperButton>
             </div>
         </div>
     );

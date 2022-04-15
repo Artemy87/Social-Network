@@ -4,7 +4,8 @@ import s from './MyPosts.module.css';
 import {PostsType} from '../../Redux/state';
 import SuperInputText from "../../SuperInputText/SuperInputText";
 import SuperButton from "../../SuperButton/SuperButton";
-import {ActionsTypes, addPostCreator, updatePostTextChangeCreator} from "../../Redux/store";
+import {addPostCreator, updatePostTextChangeCreator} from "../../Redux/profileReducer";
+import {ActionsTypes} from "../../Redux/store";
 
 type MyPostsPropsType = {
     posts: PostsType[]
