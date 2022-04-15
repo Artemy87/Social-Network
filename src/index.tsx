@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import App from './App';
-import state, {addPost} from './Redux/state';
+import { store } from './Redux/store';
 
 
-let rerenderEntireTree = () => {
+let rerenderTree = () => {
     ReactDOM.render(
-        <App
-            state={state}
-            addPost={addPost}
-        />,
+        <App store={store} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     )
 }
 
-rerenderEntireTree()
+store.subscribe(rerenderTree)
+rerenderTree();
+
+// store.subscribe(rerenderEntireTree);

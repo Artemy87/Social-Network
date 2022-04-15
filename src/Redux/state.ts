@@ -1,42 +1,46 @@
 import {v1} from "uuid";
 
 export type DialogType = {
-    id:string
-    name:string
+    id: string
+    name: string
 }
 export type MessageType = {
-    id:string
-    message:string
+    id: string
+    message: string
 }
 export interface DialogsPageType {
-    dialogs:DialogType[];
-    messages:MessageType[]
+    dialogs: DialogType[];
+    messages: MessageType[]
 }
 export type PostsType = {
-    id:string
-    name:string
-    message:string
-    time:string
-    like:number
+    id: string
+    name: string
+    message: string
+    time: string
+    like: number
 }
 export interface PostsPageType {
-    posts:PostsType[]
+    posts: PostsType[]
+    newPostText: string
 }
-export type FriendType = {
-    id:string
-    name:string
+export type FriendsType = {
+    id: string
+    name: string
 }
 export type SidebarType = {
-    friends: FriendType[]
+    friends: FriendsType[]
 }
-
 export interface RootStateType {
     dialogsPage: DialogsPageType
     profilePage: PostsPageType
     sidebar: SidebarType
 }
 
-let state:RootStateType = {
+let rerenderEntireTree = () => {
+    console.log('state changed')
+}
+
+let state: RootStateType = { // прописать export default state;
     dialogsPage: {
         dialogs: [
             {id: v1(), name: 'Dima'},
@@ -55,27 +59,40 @@ let state:RootStateType = {
         posts: [
             {id: v1(), name: 'Oleg', message: 'Hi! How are you?', time: '8:26', like: 8},
             {id: v1(), name: 'Kolya', message: 'Hello! My number +231314', time: '3:43', like: 33},
-            {id: v1(), name: 'Vica', message: 'My names Vica', time: '09:10', like: 15},
-        ]
+            {id: v1(), name: 'Vica', message: 'My name is Vica', time: '09:10', like: 15},
+            {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        ],
+        newPostText: ''
     },
     sidebar: {
         friends: [
-            {id:v1(), name: 'Katya'},
-            {id:v1(), name: 'Irina'},
-            {id:v1(), name: 'Misha'},
+            {id: v1(), name: 'Katya'},
+            {id: v1(), name: 'Irina'},
+            {id: v1(), name: 'Misha'},
         ]
     }
 }
 
-export const addPost = (postMessage:string) => {
-    const newPost = {
+export const addPost = () => {
+    const newPost: PostsType = {
         id: v1(),
         name: 'Vica',
-        message: postMessage,
+        message: state.profilePage.newPostText,
         time: '09:10',
         like: 15
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree()
 }
 
-export default state;
+export const updateNewPostText = (newText: string) => {
+    console.log(newText)
+    state.profilePage.newPostText = newText
+    rerenderEntireTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
+}
+// export default store;

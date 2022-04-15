@@ -1,54 +1,59 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import { Post } from './Post/Post';
+import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
+import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
-import { PostsType } from '../../Redux/state';
+import {PostsType} from '../../Redux/state';
 import SuperInputText from "../../SuperInputText/SuperInputText";
 import SuperButton from "../../SuperButton/SuperButton";
+import {ActionsTypes} from "../../Redux/store";
 
 type MyPostsPropsType = {
-    posts:PostsType[]
-    addPost:(postMessage:string) => void
+    posts: PostsType[]
+    dispatch: (action: ActionsTypes) => void
+    newPostText: string
 }
 
-export const MyPosts = (props:MyPostsPropsType) => {
+export const MyPosts: FC<MyPostsPropsType> = (
+    {
+        posts,
+        dispatch,
+        newPostText,
+    }) => {
 
-    const [titlePost, setTitlePost] = useState('')
+    let postsElements = posts.map(post => {
+        return (
+            <Post key={post.id} post={post}/>
+        )}
+    )
 
-    const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) => {
-        setTitlePost(e.currentTarget.value);
+    const onAddPostHandler = () => {
+        dispatch({type: 'ADD-POST'})
+        // updateNewPostText('')
     }
 
-    const onKeyPressHandler = (e:KeyboardEvent<HTMLInputElement>) => {
-        if(e.key === 'Enter') {
-            props.addPost(titlePost)
-            setTitlePost('')
+    const onChangePostHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
+    }
+
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            dispatch({type: 'ADD-POST'})
+            // updateNewPostText('')
         }
-    }
-
-    const onClickHandler = () => {
-        props.addPost(titlePost)
-        setTitlePost('')
     }
 
     return (
         <div className={s.myPosts}>
             <div className={s.post}>
-                {
-                    props.posts.map(post => {
-                        return (
-                            <Post key={post.id} post={post}/>
-                        )
-                    })
-                }
+                {postsElements}
             </div>
             <div className={s.postForm}>
                 <div className={s.sendPostForm}>
-                    <SuperInputText className={s.superInput}
-                                    value={titlePost}
-                                    onChange={onChangeHandler}
-                                    onKeyPress={onKeyPressHandler} />
+                    <SuperInputText value={newPostText}
+                                    className={s.superInput}
+                                    onChange={onChangePostHandler}
+                                    onKeyPress={onKeyPressHandler}/>
                     <SuperButton className={s.superButton}
-                                 onClick={onClickHandler}>add post</SuperButton>
+                                 onClick={onAddPostHandler}>add post</SuperButton>
                 </div>
             </div>
         </div>
