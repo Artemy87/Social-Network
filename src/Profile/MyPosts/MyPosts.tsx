@@ -1,10 +1,10 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css';
 import {PostsType} from '../../Redux/state';
 import SuperInputText from "../../SuperInputText/SuperInputText";
 import SuperButton from "../../SuperButton/SuperButton";
-import {ActionsTypes} from "../../Redux/store";
+import {ActionsTypes, addPostCreator, updatePostTextChangeCreator} from "../../Redux/store";
 
 type MyPostsPropsType = {
     posts: PostsType[]
@@ -12,8 +12,7 @@ type MyPostsPropsType = {
     newPostText: string
 }
 
-export const MyPosts: FC<MyPostsPropsType> = (
-    {
+export const MyPosts: FC<MyPostsPropsType> = ({
         posts,
         dispatch,
         newPostText,
@@ -26,19 +25,15 @@ export const MyPosts: FC<MyPostsPropsType> = (
     )
 
     const onAddPostHandler = () => {
-        dispatch({type: 'ADD-POST'})
-        // updateNewPostText('')
+        dispatch(addPostCreator())
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
+        dispatch( updatePostTextChangeCreator(e.currentTarget.value) )
     }
 
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            dispatch({type: 'ADD-POST'})
-            // updateNewPostText('')
-        }
+    const onKeyPressPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        (e.key === 'Enter') && dispatch(addPostCreator())
     }
 
     return (
@@ -51,7 +46,7 @@ export const MyPosts: FC<MyPostsPropsType> = (
                     <SuperInputText value={newPostText}
                                     className={s.superInput}
                                     onChange={onChangePostHandler}
-                                    onKeyPress={onKeyPressHandler}/>
+                                    onKeyPress={onKeyPressPostHandler}/>
                     <SuperButton className={s.superButton}
                                  onClick={onAddPostHandler}>add post</SuperButton>
                 </div>

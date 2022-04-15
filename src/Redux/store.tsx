@@ -10,7 +10,8 @@ export type MessageType = {
 }
 export interface DialogsPageType {
     dialogs: DialogType[];
-    messages: MessageType[]
+    messages: MessageType[];
+    newMessageBody: string;
 }
 export type PostsType = {
     id: string
@@ -38,25 +39,28 @@ export interface RootStateType {
 export type StoreType = {
     _state: RootStateType
     _callSubscribe: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
-export type AddPostActionType = {
-    type: 'ADD-POST',
-    // newPost: string
-}
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText: string
-}
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
 
-let renderEntireTree = () => {
+export type ActionsTypes =
+    ReturnType<typeof addPostCreator> |
+    ReturnType<typeof updatePostTextChangeCreator> |
+    ReturnType<typeof sendMessageCreator> |
+    ReturnType<typeof updateNewMessageBodyCreator>;
 
-}
+
+export const addPostCreator = () => ({type: 'ADD-POST'}) as const;
+export const updatePostTextChangeCreator = (text:string) => ({
+    type: "UPDATE-NEW-POST-TEXT",
+    newText: text
+}) as const;
+export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'}) as const;
+export const updateNewMessageBodyCreator = (text:string) => ({
+    type: 'UPDATE-NEW-MESSAGE-BODY',
+    body: text
+}) as const;
 
 export let store: StoreType = {
     _state: {
@@ -72,7 +76,8 @@ export let store: StoreType = {
                 {id: v1(), message: 'How are you?'},
                 {id: v1(), message: 'Yo!'},
                 {id: v1(), message: 'My number +0034024'},
-            ]
+            ],
+            newMessageBody: ''
         },
         profilePage: {
             posts: [
@@ -104,24 +109,6 @@ export let store: StoreType = {
         return this._state
     },
 
-    addPost() {
-        const newPost: PostsType = {
-            id: v1(),
-            name: 'Vica',
-            message: this._state.profilePage.newPostText,
-            time: '09:10',
-            like: 15
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscribe()
-    },
-
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscribe()
-    },
-
     dispatch(action) {
         if (action.type === 'ADD-POST') {
             const newPost: PostsType = {
@@ -134,8 +121,22 @@ export let store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscribe()
+
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
+            this._callSubscribe()
+
+        } else if(action.type === 'SEND-MESSAGE') {
+            const newMessage: MessageType = {
+                id: v1(),
+                message: this._state.dialogsPage.newMessageBody
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageBody = ''
+            this._callSubscribe()
+
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.dialogsPage.newMessageBody = action.body
             this._callSubscribe()
         }
     }

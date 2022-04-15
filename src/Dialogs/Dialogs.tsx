@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Message/Message';
@@ -6,26 +6,49 @@ import {DialogsPageType} from '../Redux/state';
 import s from './Dialogs.module.css'
 import SuperButton from "../SuperButton/SuperButton";
 import SuperInputText from "../SuperInputText/SuperInputText";
+import {ActionsTypes, sendMessageCreator, updateNewMessageBodyCreator} from "../Redux/store";
 
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
+    dispatch: (action: ActionsTypes) => void
+    newMessageBody: string
 }
 
-export const Dialogs = (props: DialogsPropsType) => {
+export const Dialogs:FC<DialogsPropsType> = ({
+    dialogsPage,
+    dispatch,
+    newMessageBody
+}) => {
+
+    const onClickMessageHandler = () => {
+        dispatch(sendMessageCreator())
+    }
+
+    const onChangeMessageHandler = (e:ChangeEvent<HTMLInputElement>) => {
+        dispatch(updateNewMessageBodyCreator(e.currentTarget.value))
+    }
+
+    const onKeyPressMessageHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        (e.key === 'Enter') && dispatch(sendMessageCreator())
+    }
+
     return (
         <div className={s.dialogsContainer}>
             <div>
-                <DialogsItem dialogs={props.dialogsPage.dialogs}/>
+                <DialogsItem dialogs={dialogsPage.dialogs}/>
             </div>
 
             <div>
-                <Message messages={props.dialogsPage.messages}/>
+                <Message messages={dialogsPage.messages}/>
             </div>
 
             <div className={s.sendMessageForm}>
-                <SuperInputText />
-                <SuperButton>add message</SuperButton>
+                <SuperInputText
+                    value={newMessageBody}
+                    onChange={onChangeMessageHandler}
+                    onKeyPress={onKeyPressMessageHandler}/>
+                <SuperButton onClick={onClickMessageHandler}>add message</SuperButton>
             </div>
         </div>
     );

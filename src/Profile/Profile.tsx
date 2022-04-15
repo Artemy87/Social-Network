@@ -10,8 +10,7 @@ type ProfilePropsType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export const Profile:FC<ProfilePropsType> = (
-    { profilePage, dispatch }
+export const Profile:FC<ProfilePropsType> = ({ profilePage, dispatch }
 ) => {
     return (
         <div className={styles.content}>

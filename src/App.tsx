@@ -34,10 +34,14 @@ const App = (props:AppType) => {
                     <div className='content'>
                         <Switch>
                             <Route exact path='/profile' render={() =>
-                                <Profile profilePage={store.profilePage}
+                                <Profile
+                                    profilePage={store.profilePage}
+                                    dispatch={props.dispatch}/>}/>
+                            <Route path='/dialogs' render={() =>
+                                <Dialogs
+                                    dialogsPage={store.dialogsPage}
                                     dispatch={props.dispatch}
-                                />}/>
-                            <Route path='/dialogs' render={() => <Dialogs dialogsPage={store.dialogsPage}/>}/>
+                                    newMessageBody={store.dialogsPage.newMessageBody} />}/>
                             <Route path='/news' render={() => <News/>}/>
                             <Route path='/music' render={() => <Music/>}/>
                             <Route path='/settings' render={() => <Settings/>}/>
