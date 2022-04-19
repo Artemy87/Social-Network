@@ -1,16 +1,9 @@
 import React, {FC} from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
-import {SidebarType} from "../Redux/state";
+import {SidebarType} from "../Redux/store";
 
-type NavbarType = {
-    sidebar: SidebarType
-}
-
-
-
-export const Navbar:FC<NavbarType> = ({sidebar:{friends}}) => {
-
+export const Navbar:FC<SidebarType> = ({friends}) => {
     return (
         <div className={s.navbarContainer}>
             <div className={s.navbar}>
@@ -32,14 +25,8 @@ export const Navbar:FC<NavbarType> = ({sidebar:{friends}}) => {
                         )
                     })
                 }
-                {/*<div>*/}
-                {/*    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6vjzwZaBf6bKmbl7I00WbZ9RPOlriawksgQ&usqp=CAU" alt=""/>*/}
-                {/*    Sasha</div>*/}
-                {/*<div>*/}
-                {/*    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6vjzwZaBf6bKmbl7I00WbZ9RPOlriawksgQ&usqp=CAU" alt=""/>*/}
-                {/*    Svetlana*/}
-                {/*</div>*/}
             </div>
         </div>
     )
 }
+

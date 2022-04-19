@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 
 import styles from './DialogsItem.module.css';
-import {DialogType} from '../../Redux/state';
+import {DialogType} from '../../Redux/store';
 
 interface DialogsItemPropsType {
     dialogs: DialogType[]

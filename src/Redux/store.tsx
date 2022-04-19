@@ -1,6 +1,6 @@
 import {v1} from "uuid";
-import {profileReducer, ProfileTypes} from "./profileReducer";
-import {dialogsReducer, DialogsType} from "./dialogsReducer";
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
 export type DialogType = {
@@ -46,9 +46,6 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: any) => void
 }
-
-export type ActionsTypes = ProfileTypes | DialogsType
-
 
 export let store: StoreType = {
     _state: {

@@ -2,36 +2,35 @@ import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Message/Message';
-import {DialogsPageType} from '../Redux/state';
+import {DialogsPageType} from '../Redux/store';
 import s from './Dialogs.module.css'
 import SuperButton from "../SuperButton/SuperButton";
 import SuperInputText from "../SuperInputText/SuperInputText";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../Redux/dialogsReducer";
-import {ActionsTypes} from "../Redux/store";
-
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
-    newMessageBody: string
+    newMessageBody: string,
+    onSendMessage: ()=> void,
+    onUpdateMessage: (body: string) => void,
 }
 
 export const Dialogs:FC<DialogsPropsType> = ({
     dialogsPage,
-    dispatch,
-    newMessageBody
+    newMessageBody,
+    onSendMessage,
+    onUpdateMessage,
 }) => {
 
     const onSendMessageHandler = () => {
-        dispatch(sendMessageCreator())
+        onSendMessage()
     }
 
     const onChangeMessageHandler = (e:ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateNewMessageBodyCreator(e.currentTarget.value))
+        onUpdateMessage(e.currentTarget.value)
     }
 
     const onKeyPressMessageHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        (e.key === 'Enter') && dispatch(sendMessageCreator())
+        (e.key === 'Enter') && onSendMessage()
     }
 
     return (
