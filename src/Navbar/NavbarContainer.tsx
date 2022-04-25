@@ -1,14 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {AllStateType} from "../Redux/redux-store";
 import {Navbar} from "./Navbar";
+import {AppStateType} from "../Redux/redux-store";
+import {FriendType} from "../Redux/sidebarReducer";
 
-let mapStateToProps = (state:AllStateType) => {
+export type MapStateToPropsType = {
+    friends: FriendType[]
+}
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         friends: state.sidebar.friends
     }
 }
 
-
-export const NavbarContainer
-    = connect(mapStateToProps, {})(Navbar)
+export const NavbarContainer = connect(mapStateToProps)(Navbar)

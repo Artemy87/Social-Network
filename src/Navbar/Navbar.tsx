@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
-import {SidebarType} from "../Redux/store";
+import s from './Navbar.module.css'
+import {MapStateToPropsType} from "./NavbarContainer";
 
-export const Navbar:FC<SidebarType> = ({friends}) => {
+export const Navbar:FC<MapStateToPropsType> = ({friends}) => {
     return (
         <div className={s.navbarContainer}>
             <div className={s.navbar}>

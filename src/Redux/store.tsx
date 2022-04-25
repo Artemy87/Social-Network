@@ -3,43 +3,44 @@ import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
-export type DialogType = {
+type DialogType = {
     id: string
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: string
     message: string
 }
-export interface DialogsPageType {
-    dialogs: DialogType[];
-    messages: MessageType[];
-    newMessageBody: string;
+type DialogsPageType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessageBody: string
 }
-export type PostsType = {
+type PostsType = {
     id: string
     name: string
     message: string
     time: string
     like: number
 }
-export interface PostsPageType {
+type PostsPageType = {
     posts: PostsType[]
     newPostText: string
 }
-export type FriendsType = {
+type FriendsType = {
     id: string
     name: string
 }
-export type SidebarType = {
+type SidebarType = {
     friends: FriendsType[]
 }
-export interface RootStateType {
+
+interface RootStateType {
     dialogsPage: DialogsPageType
     profilePage: PostsPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _callSubscribe: () => void
     subscribe: (callback: () => void) => void

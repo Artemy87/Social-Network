@@ -1,41 +1,37 @@
 import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 import {Post} from './Post/Post';
-import s from './MyPosts.module.css';
-import {PostsType} from '../../Redux/store';
 import SuperInputText from "../../SuperInputText/SuperInputText";
 import SuperButton from "../../SuperButton/SuperButton";
+import s from './MyPosts.module.css';
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-    posts: PostsType[]
-    newPostText: string
-    onAddPost: () => void
-    onPostChange: (text: string) => void
-}
 
-export const MyPosts: FC<MyPostsPropsType> = ({
+export const MyPosts: FC<MyPostsPropsType> = (
+    {
         posts,
         newPostText,
-        onAddPost,
-        onPostChange
+        addPost,
+        updatePost
     }) => {
 
     let postsElements = posts.map(post => {
-        // debugger
-        return (
-            <Post key={post.id} post={post}/>
-        )}
+            // debugger
+            return (
+                <Post key={post.id} post={post}/>
+            )
+        }
     )
 
     const onAddPostHandler = () => {
-        onAddPost()
+        addPost()
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        onPostChange(e.currentTarget.value)
+        updatePost(e.currentTarget.value)
     }
 
     const onKeyPressPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        (e.key === 'Enter') && onAddPost()
+        (e.key === 'Enter') && addPost()
     }
 
     return (

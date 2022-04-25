@@ -1,57 +1,45 @@
 import React from 'react';
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../Redux/dialogsReducer";
-import {Dialogs} from "./Dialogs";
-import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {AllAppActionsType, AllStateType} from "../Redux/redux-store";
+import {connect} from "react-redux";
+import {Dialogs} from "./Dialogs";
+import {
+    InitialDialogsPageType,
+    sendMessageCreator,
+    updateNewMessageBodyCreator
+} from "../Redux/dialogsReducer";
+import {AllAppActionsType, AppStateType} from "../Redux/redux-store";
 
-// type DialogsPropsType = {
-//     store: StoreType // ??
-// }
+type MapStateToPropsType = {
+    dialogsPage: InitialDialogsPageType
+    newMessageBody: string
+}
 
-// export const DialogsContainer: FC<DialogsPropsType> = ({store,}) => {
-//
-//     const state = store.getState();
-//
-//     const onSendMessage = () => {
-//         store.dispatch(sendMessageCreator())
-//     }
-//
-//     const onUpdateNewMessageBody = (body: string) => {
-//         store.dispatch(updateNewMessageBodyCreator(body))
-//     }
-//
-//     return <Dialogs
-//         dialogsPage={state.dialogsPage}
-//         newMessageBody={state.dialogsPage.newMessageBody}
-//         onSendMessage={onSendMessage}
-//         onUpdateMessage={onUpdateNewMessageBody}
-//     />
-// };
+type MapDispatchToPropsType = {
+    onSendMessage: () => void
+    onUpdateMessage: (body: string) => void
+}
 
-// type StateType = {
-//     dialogsPage: DialogType
-//     newMessageBody: string
-// }
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-let mapStateToProps = (state:AllStateType) => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
         newMessageBody: state.dialogsPage.newMessageBody
+
     };
 }
 
-let mapDispatchToProps = (dispatch: Dispatch<AllAppActionsType>) => {
+let mapDispatchToProps = (dispatch: Dispatch<AllAppActionsType>): MapDispatchToPropsType => {
     return {
         onSendMessage: () => {
             dispatch(sendMessageCreator())
         },
-        onUpdateMessage: (body:string) => {
+        onUpdateMessage: (body: string) => {
             dispatch(updateNewMessageBodyCreator(body))
         },
     };
 }
 
-export const DialogsContainer
-    = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(
+        mapStateToProps, mapDispatchToProps)(Dialogs)
 

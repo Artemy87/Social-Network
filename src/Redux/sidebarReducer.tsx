@@ -1,7 +1,15 @@
-import {FriendsType, SidebarType} from "./store";
 import {v1} from "uuid";
 
-const initialState:SidebarType = {
+export type FriendType = {
+    id: string
+    name: string
+}
+
+export type InitialStateType = {
+    friends: FriendType[]
+}
+
+const initialState:InitialStateType = {
         friends: [
             {id: v1(), name: 'Katya'},
             {id: v1(), name: 'Irina'},
@@ -9,7 +17,7 @@ const initialState:SidebarType = {
         ]
 }
 
-export const sidebarReducer = (state=initialState, action: FriendsType) => {
+export const sidebarReducer = (state:InitialStateType = initialState, action: FriendType):InitialStateType => {
     switch (action) {
         default: return {...state}
     }

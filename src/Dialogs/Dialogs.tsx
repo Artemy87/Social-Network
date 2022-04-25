@@ -2,17 +2,11 @@ import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
 
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Message/Message';
-import {DialogsPageType} from '../Redux/store';
-import s from './Dialogs.module.css'
-import SuperButton from "../SuperButton/SuperButton";
 import SuperInputText from "../SuperInputText/SuperInputText";
+import SuperButton from "../SuperButton/SuperButton";
+import {DialogsPropsType} from "./DialogsContainer";
+import s from './Dialogs.module.css'
 
-type DialogsPropsType = {
-    dialogsPage: DialogsPageType
-    newMessageBody: string,
-    onSendMessage: ()=> void,
-    onUpdateMessage: (body: string) => void,
-}
 
 export const Dialogs:FC<DialogsPropsType> = ({
     dialogsPage,

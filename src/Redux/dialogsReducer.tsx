@@ -1,7 +1,20 @@
 import {v1} from "uuid";
-import {DialogsPageType, MessageType} from "./store";
 
-const initialState: DialogsPageType = {
+export type DialogType = {
+    id: string
+    name: string
+}
+export type MessageType = {
+    id: string
+    message: string
+}
+export type InitialDialogsPageType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessageBody: string
+}
+
+const initialState = {
     dialogs: [
         {id: v1(), name: 'Dima'},
         {id: v1(), name: 'Valera'},
@@ -17,23 +30,21 @@ const initialState: DialogsPageType = {
     newMessageBody: ''
 }
 
-export const dialogsReducer = (state=initialState, action: DialogsActionsType) => {
+export const dialogsReducer = (state:InitialDialogsPageType = initialState, action: DialogsActionsType): InitialDialogsPageType => {
     switch (action.type) {
-        case 'SEND-MESSAGE': {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: state.newMessageBody
-            }
-
-            state.newMessageBody = ''
-
+        case 'UPDATE-NEW-MESSAGE-BODY': {
             return {
                 ...state,
-                messages: [...state.messages, newMessage]
+                newMessageBody: action.body
             }
         }
-        case 'UPDATE-NEW-MESSAGE-BODY': {
-            return {...state, newMessageBody: action.body}
+
+        case 'SEND-MESSAGE': {
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: v1(), message: state.newMessageBody}]
+            }
         }
 
         default: return state
@@ -42,7 +53,9 @@ export const dialogsReducer = (state=initialState, action: DialogsActionsType) =
 
 export type DialogsActionsType = ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageBodyCreator>
 
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'}) as const;
+export const sendMessageCreator = () => ({
+        type: 'SEND-MESSAGE'
+}) as const;
 
 export const updateNewMessageBodyCreator = (body:string) => ({
     type: 'UPDATE-NEW-MESSAGE-BODY',
