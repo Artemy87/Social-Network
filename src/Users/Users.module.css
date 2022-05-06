@@ -1,0 +1,50 @@
+.user {
+    position: relative;
+    margin: 10px;
+}
+
+.grid1 {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    height: 100px;
+    padding: 10px;
+
+}
+
+.grid12 {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    margin: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.grid2 {
+    display: grid;
+    grid-template-rows: auto auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.grid21 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: end;
+}
+
+.status {
+    align-self: end;
+}
+
+.user SuperButton {
+    display: flex;
+    flex-direction: row;
+    background-color: #d8ead7;
+    border-radius: 0 0 15px 0;
+}

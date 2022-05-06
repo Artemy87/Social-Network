@@ -1,8 +1,9 @@
 import {combineReducers, createStore} from "redux";
 
-import {ProfileActionsTypes, profileReducer} from "./profileReducer";
-import {DialogsActionsType, dialogsReducer} from "./dialogsReducer";
-import {sidebarReducer} from "./sidebarReducer";
+import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
+import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+import {UsersActionType, usersReducer} from "./users-reducer";
 
 
 interface DialogsPageType {
@@ -51,12 +52,16 @@ export type StoreType = {
     dispatch: (action: any) => void
 }
 
-export type AllAppActionsType = DialogsActionsType | ProfileActionsTypes
+export type AppActionsType =
+    DialogsActionsType |
+    ProfileActionsTypes |
+    UsersActionType
 
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
     sidebar: sidebarReducer,
 })
 

@@ -23,7 +23,7 @@ export const MyPosts: FC<MyPostsPropsType> = (
     )
 
     const onAddPostHandler = () => {
-        addPost()
+        newPostText.trim() !== '' && addPost()
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ export const MyPosts: FC<MyPostsPropsType> = (
     }
 
     const onKeyPressPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        (e.key === 'Enter') && addPost()
+        (e.key === 'Enter' && newPostText.trim() !== '') && addPost()
     }
 
     return (

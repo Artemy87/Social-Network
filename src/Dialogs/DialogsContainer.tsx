@@ -3,14 +3,14 @@ import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
 import {
-    InitialDialogsPageType,
+    InitialStateType,
     sendMessageCreator,
     updateNewMessageBodyCreator
-} from "../Redux/dialogsReducer";
-import {AllAppActionsType, AppStateType} from "../Redux/redux-store";
+} from "../Redux/dialogs-reducer";
+import {AppActionsType, AppStateType} from "../Redux/redux-store";
 
 type MapStateToPropsType = {
-    dialogsPage: InitialDialogsPageType
+    dialogsPage: InitialStateType
     newMessageBody: string
 }
 
@@ -29,7 +29,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     };
 }
 
-let mapDispatchToProps = (dispatch: Dispatch<AllAppActionsType>): MapDispatchToPropsType => {
+let mapDispatchToProps = (dispatch: Dispatch<AppActionsType>): MapDispatchToPropsType => {
     return {
         onSendMessage: () => {
             dispatch(sendMessageCreator())

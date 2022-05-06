@@ -7,12 +7,12 @@ export type PostsType = {
     time: string
     like: number
 }
-export type InitialProfilePageType = {
+export type InitialStateType = {
     posts: PostsType[]
     newPostText: string
 }
 
-const initialState: InitialProfilePageType = {
+const initialState: InitialStateType = {
     posts: [
         {id: v1(), name: 'Oleg', message: 'Hi! How are you?', time: '8:26', like: 8},
         {id: v1(), name: 'Kolya', message: 'Hello! My number +231314', time: '3:43', like: 33},
@@ -22,7 +22,7 @@ const initialState: InitialProfilePageType = {
     newPostText: ''
 }
 
-export const profileReducer = (state: InitialProfilePageType = initialState, action: ProfileActionsTypes): InitialProfilePageType => {
+export const profileReducer = (state: InitialStateType = initialState, action: ProfileActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostsType = {
