@@ -6,8 +6,8 @@ import {v1} from "uuid";
 
 type UsersPropsType = {
     users: UsersType[],
-    follow: (userId: string, followed: boolean) => void
-    unfollow: (userId: string, followed: boolean) => void
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
     setUsers: (users: UsersType[]) => void
 }
 
@@ -37,8 +37,12 @@ export const Users: FC<UsersPropsType> = ({
                             </div>
                             <div>
                                 {u.followed
-                                    ? <button onClick={() => unfollow(u.id, false)}>unfollow</button>
-                                    : <button onClick={() => follow(u.id, true)}>followed</button>
+                                    ? <SuperButton
+                                        className={u.followed ? styles.unfollowButton : styles.followButton}
+                                        onClick={() => {unfollow(u.id)}}>unfollow</SuperButton>
+                                    : <SuperButton
+                                        className={u.followed ? styles.unfollowButton : styles.followButton}
+                                        onClick={() => {follow(u.id)}}>follow</SuperButton>
                                 }
                             </div>
                         </div>

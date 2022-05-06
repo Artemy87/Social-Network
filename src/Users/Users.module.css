@@ -1,14 +1,16 @@
 .user {
     position: relative;
-    margin: 10px;
+    background-color: #898f9f;
+    height: 100%;
+
 }
 
 .grid1 {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 180px 1fr;
     height: 100px;
     padding: 10px;
-
+    margin-bottom: 10px;
 }
 
 .grid12 {
@@ -26,25 +28,36 @@
 .grid2 {
     display: grid;
     grid-template-rows: auto auto;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
+    background-color: white;
 }
 
 .grid21 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
     justify-content: end;
 }
 
 .status {
     align-self: end;
+    color: #dc00dc;
 }
 
-.user SuperButton {
-    display: flex;
-    flex-direction: row;
-    background-color: #d8ead7;
-    border-radius: 0 0 15px 0;
+.followButton {
+    background-color: greenyellow;
+    color: black;
+    width: 120px;
+    border: none;
+    padding: 0;
+}
+
+.unfollowButton {
+    background-color: white;
+    color: black;
+    width: 120px;
+    border: none;
+    padding: 0;
 }
