@@ -1,15 +1,11 @@
-.myPosts {
-}
-
 .post {
     min-height: 100px;
-    max-height: 600px;
+    max-height: 650px;
     overflow: auto;
 }
 
 .postForm {
     background-color: #d8ead7;
-    /*justify-content: flex-end;*/
     position: absolute;
     left: 0;
     right: 0;

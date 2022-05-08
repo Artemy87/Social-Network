@@ -1,63 +1,97 @@
-.user {
-    position: relative;
+.users {
     background-color: #898f9f;
+    overflow: auto;
+    min-height: 100px;
+    max-height: 650px;
     height: 100%;
-
 }
-
-.grid1 {
+.user {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    height: 100px;
+    grid-template-columns: 150px 1fr;
+    height: 150px;
     padding: 10px;
-    margin-bottom: 10px;
 }
 
-.grid12 {
+.profile {
+    /*display: grid;*/
+    /*grid-template-rows: 80px 30px;*/
+    /*height: 120px;*/
+    /*justify-items: center;*/
+    /*margin: 20px;*/
+
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: 120px 30px;
     justify-items: center;
-    margin: 10px;
+    align-items: end;
+}
+.photo > img {
+    height: 65px;
+    width: 65px;
 }
 
-.grid {
-    display: grid;
-    grid-template-rows: auto auto;
-}
-
-.grid2 {
-    display: grid;
-    grid-template-rows: auto auto;
-    /*border: 1px solid black;*/
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    background-color: white;
-}
-
-.grid21 {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    justify-content: end;
-}
-
-.status {
-    align-self: end;
-    color: #dc00dc;
+.name {
+    color: #0f6d8f;
+    font-weight: bold;
 }
 
 .followButton {
     background-color: greenyellow;
     color: black;
-    width: 120px;
+    font-size: .6rem;
+    letter-spacing: 2px;
     border: none;
+    width: 85px;
+    height: 20px;
     padding: 0;
 }
-
 .unfollowButton {
     background-color: white;
     color: black;
-    width: 120px;
+    font-size: .6rem;
+    letter-spacing: 2px;
     border: none;
+    width: 85px;
+    height: 20px;
     padding: 0;
 }
+
+.message {
+    display: grid;
+    grid-template-rows: 15px 1fr 15px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+}
+.header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: end;
+}
+.bodyMessage {
+    margin: 15px 0;
+}
+.statusContainer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-self: end;
+}
+.status {
+    color: #dc00dc;
+}
+
+.showMoreButton {
+    position: absolute;
+    background-color: #d8ead7;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.superButton {
+
+}
+
+
+

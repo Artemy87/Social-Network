@@ -35,18 +35,16 @@ export const MyPosts: FC<MyPostsPropsType> = (
     }
 
     return (
-        <div className={s.myPosts}>
+        <div>
             <div className={s.post}>
                 {postsElements}
             </div>
             <div className={s.postForm}>
                 <div className={s.sendPostForm}>
                     <SuperInputText value={newPostText}
-                                    className={s.superInput}
                                     onChange={onChangePostHandler}
                                     onKeyPress={onKeyPressPostHandler}/>
-                    <SuperButton className={s.superButton}
-                                 onClick={onAddPostHandler}>add post</SuperButton>
+                    <SuperButton onClick={onAddPostHandler}>add post</SuperButton>
                 </div>
             </div>
         </div>

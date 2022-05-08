@@ -24,7 +24,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<AppActionsType>): MapDispatchToPropsType => {
-    debugger
     return {
         updatePost: (text: string) => {
             dispatch(updatePostTextChangeCreator(text))

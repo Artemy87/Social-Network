@@ -18,6 +18,11 @@ const initialState: InitialStateType = {
         {id: v1(), name: 'Kolya', message: 'Hello! My number +231314', time: '3:43', like: 33},
         {id: v1(), name: 'Vica', message: 'My name is Vica', time: '09:10', like: 15},
         {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
+        {id: v1(), name: 'Nikita', message: 'Ye', time: '09:10', like: 15},
     ],
     newPostText: ''
 }

@@ -14,7 +14,7 @@ export const Navbar:FC<MapStateToPropsType> = ({friends}) => {
                 <NavLink to='/music'>Music</NavLink>
                 <NavLink to='settings'>Settings</NavLink>
             </div>
-            <div className={s.titleFriends}>Friends</div>
+            <div className={s.titleFriends}>friends</div>
             <div className={s.friends}>
                 {
                     friends.map(friend => {

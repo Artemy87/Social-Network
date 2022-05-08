@@ -5,8 +5,8 @@ import {MyPostContainer} from "./MyPosts/MyPostsContainer";
 
 export const Profile = () => {
     return (
-        <div className={styles.content}>
-            <ProfileInfo />
+        <div>
+            {/*<ProfileInfo />*/}
             <MyPostContainer />
         </div>
     )
