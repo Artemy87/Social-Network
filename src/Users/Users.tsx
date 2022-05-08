@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {UsersType} from "../Redux/users-reducer";
 import SuperButton from "../SuperButton/SuperButton";
-import {v1} from "uuid";
 import axios from 'axios';
 import styles from './Users.module.css';
 
@@ -14,13 +13,7 @@ type UsersPropsType = {
 
 export class Users extends Component<UsersPropsType, {}> {
 
-    // getUsers = () => {
-    //     if (this.props.users.length === 0) {
-    //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //             .then(response => {
-    //                 this.props.setUsers(response.data.items)
-    //             })
-    //
+
     //         this.props.setUsers([
     //                 {
     //                     id: v1(),
@@ -40,8 +33,6 @@ export class Users extends Component<UsersPropsType, {}> {
     //                 },
     //             ]
     //         )
-    //     }
-    // }
 
     componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
@@ -58,9 +49,10 @@ export class Users extends Component<UsersPropsType, {}> {
                         <div className={styles.profile}>
                             <div className={styles.photo}>
                                 {u.photos?.small
-                                    ? <img src={u.photos.small} alt=""/>
+                                    ? <img src={u.photos.small} alt="user photo"/>
                                     : <img
-                                        src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtno7MdfABUmGeZB0Mz7oi6bklmEq9GhLRA&usqp=CAU'}/>
+                                        src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtno7MdfABUmGeZB0Mz7oi6bklmEq9GhLRA&usqp=CAU'}
+                                        alt='user photo'/>
                                 }
                             </div>
                             <div>
@@ -102,7 +94,7 @@ export class Users extends Component<UsersPropsType, {}> {
         </div>
     }
 
-};
+}
 
 /*
 type UsersPropsType = {
