@@ -32,12 +32,6 @@
 }
 
 .profile {
-    /*display: grid;*/
-    /*grid-template-rows: 80px 30px;*/
-    /*height: 120px;*/
-    /*justify-items: center;*/
-    /*margin: 20px;*/
-
     display: grid;
     grid-template-rows: 120px 30px;
     justify-items: center;
