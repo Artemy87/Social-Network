@@ -5,6 +5,25 @@
     max-height: 650px;
     height: 100%;
 }
+
+.pagesContainer {
+    padding: 10px;
+    background-color: #a8aeb6;
+}
+
+.pagesCount {
+    font-size: 1.3rem;
+    color: #f5f5f5;
+    margin: 0 5px;
+}
+
+.selected {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: black;
+    margin: 0 10px;
+}
+
 .user {
     display: grid;
     grid-template-columns: 150px 1fr;

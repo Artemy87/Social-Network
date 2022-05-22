@@ -5,15 +5,18 @@ import axios from 'axios';
 import styles from './Users.module.css';
 
 type UsersPropsType = {
-    users: UsersType[],
+    users: UsersType[]
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setUsers: (users: UsersType[]) => void
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    setTotalUsersCount: (count: number) => void
+    setCurrentPage: (page: number) => void
 }
 
 export class Users extends Component<UsersPropsType, {}> {
-
-
     //         this.props.setUsers([
     //                 {
     //                     id: v1(),
@@ -34,15 +37,44 @@ export class Users extends Component<UsersPropsType, {}> {
     //             ]
     //         )
 
+    baseURL = `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}`;
+
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => this.props.setUsers(response.data.items));
+        axios.get(`${this.baseURL}&page=${this.props.currentPage}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onPageChanged = (p: number) => {
+        this.props.setCurrentPage(p);
+        axios.get(`${this.baseURL}&page=${p}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
     }
 
     render() {
-        let {users, follow, unfollow} = this.props;
+        let {users, follow, unfollow, pageSize, totalUsersCount} = this.props;
+
+        let pagesCount = Math.ceil(totalUsersCount / pageSize);
+        let pages = [];
+        for(let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
+        }
 
         return <div className={styles.users}>
+            <div className={styles.pagesContainer}>
+                {pages.map(p => {
+                    return (
+                        <span key={p}
+                            className={this.props.currentPage === p ? `${styles.pagesCount} ${styles.selected}` : styles.pagesCount}
+                            onClick={() => {this.onPageChanged(p)}}
+                        >{p}</span>
+                    )
+                })}
+            </div>
             {users.map(u => {
                 return (
                     <div key={u.id} className={styles.user}>
