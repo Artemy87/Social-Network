@@ -3,3 +3,18 @@
     font-size: 1.2rem;
     background-color: #d8ead7;
 }
+
+.profileContainer {
+    display: flex;
+    padding: 10px;
+    background-color: #789bc9;
+}
+
+.photo {
+    height: 100px;
+    padding-right: 20px;
+}
+
+.userDescription {
+    padding: 10px;
+}

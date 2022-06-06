@@ -15,3 +15,23 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 export const NavbarContainer = connect(mapStateToProps)(Navbar)
+
+
+// export class NavbarContainer extends Component {
+//     render() {
+//         return (
+//             <Navbar friends={this.props.friends}/>
+//         )
+//     }
+// }
+//
+// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+//     return {
+//         friends: state.sidebar.friends
+//     }
+// }
+//
+// export default connect(
+//     mapStateToProps,
+//     {}
+// )(Navbar);

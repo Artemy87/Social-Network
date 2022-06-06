@@ -15,7 +15,7 @@ export type InitialStateType = {
     isFetching: boolean
 }
 
-const initialStateType = {
+const initialState = {
     users: [],
     pageSize: 3,
     totalUsersCount: 0,
@@ -23,7 +23,7 @@ const initialStateType = {
     isFetching: true
 }
 
-export const usersReducer = (state:InitialStateType = initialStateType, action:UsersActionType): InitialStateType => {
+export const usersReducer = (state:InitialStateType = initialState, action:UsersActionType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW": {
             return {
