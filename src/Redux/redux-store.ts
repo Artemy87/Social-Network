@@ -4,6 +4,7 @@ import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
 import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {UsersActionType, usersReducer} from "./users-reducer";
+import {AuthActionsType, authReducer} from "./auth-reducer";
 
 
 // interface DialogsPageType {
@@ -52,17 +53,18 @@ import {UsersActionType, usersReducer} from "./users-reducer";
 //     dispatch: (action: any) => void
 // }
 
-
 export type AppActionsType =
     DialogsActionsType |
     ProfileActionsTypes |
-    UsersActionType
+    UsersActionType |
+    AuthActionsType
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     sidebar: sidebarReducer,
+    auth: authReducer,
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>

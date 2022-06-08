@@ -1,4 +1,5 @@
 .header {
+    display: flex;
     height: 100%;
 }
 
@@ -10,4 +11,18 @@
     background-image: url('https://avatanplus.com/files/resources/original/56ffca99c57d3153d72f68d1.png');
     background-position: center top -108px;
     background-repeat: no-repeat;
+}
+
+.loginBlock {
+    display: flex;
+    align-items: start;
+    height: 20px;
+    margin: 10px 20px 0 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.loginBlock:hover {
+    color: #4f4f4f;
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import './App.css'
-import {Header} from './Header/Header';
 import {News} from './News/News';
 import {Music} from './Music/Music';
 import {Settings} from './Settings/Settings';
@@ -10,6 +9,7 @@ import {DialogsContainer} from "./Dialogs/DialogsContainer";
 import {NavbarContainer} from "./Navbar/NavbarContainer";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import HeaderContainer from "./Header/HeaderContainer";
 
 const App = () => {
     return (
@@ -17,7 +17,7 @@ const App = () => {
             <div className='grid-wrap'>
                 <div className='grid-area'>
                     <header className='header'>
-                        <Header/>
+                        <HeaderContainer />
                     </header>
                     <nav className='navbar'>
                         <NavbarContainer />

@@ -71,10 +71,9 @@ export class ProfileContainer extends Component<ProfileContainerType> {
     baseURL = `https://social-network.samuraijs.com/api/1.0/`;
 
     componentDidMount() {
-        debugger;
         let userId = this.props.match.params.userId;
         if(!userId) {
-            userId = '2';
+            userId = '23660';
         }
         axios.get(`${this.baseURL}profile/${userId}`)
             .then(response => {
