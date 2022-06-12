@@ -4,6 +4,7 @@ import {UsersType} from "../Redux/users-reducer";
 import SuperButton from "../SuperButton/SuperButton";
 import styles from "./Users.module.css";
 import Preloader from "../common/preloader/Preloader";
+import axios from "axios";
 
 type UserPropsType = {
     users: UsersType[]
@@ -16,17 +17,19 @@ type UserPropsType = {
     isFetching: boolean
 }
 
-export const Users: FC<UserPropsType> = ({
-                                             users,
-                                             follow,
-                                             unfollow,
-                                             pageSize,
-                                             totalUsersCount,
-                                             currentPage,
-                                             onPageChanged,
-                                             isFetching,
-                                         }
-) => {
+export const Users: FC<UserPropsType> = (props) => {
+
+    let {
+        users,
+        follow,
+        unfollow,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        onPageChanged,
+        isFetching,
+    } = props;
+
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -55,10 +58,10 @@ export const Users: FC<UserPropsType> = ({
                                     <NavLink to={`/profile/${u.id}`}>
                                         <div className={styles.photo}>
                                             {u.photos?.small
-                                                    ? <img src={u.photos.small} alt="user photo"/>
-                                                    : <img
-                                                        src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtno7MdfABUmGeZB0Mz7oi6bklmEq9GhLRA&usqp=CAU'}
-                                                        alt='user photo'/>
+                                                ? <img src={u.photos.small} alt="user photo"/>
+                                                : <img
+                                                    src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtno7MdfABUmGeZB0Mz7oi6bklmEq9GhLRA&usqp=CAU'}
+                                                    alt='user photo'/>
                                             }
                                         </div>
                                     </NavLink>
@@ -66,16 +69,38 @@ export const Users: FC<UserPropsType> = ({
                                         {u.followed
                                             ? <SuperButton
                                                 className={u.followed ? styles.unfollowButton : styles.followButton}
-                                                onClick={() => {
-                                                    unfollow(u.id)
-                                                }}
-                                            >unfollow</SuperButton>
+                                                onClick={
+                                                    () => {
+                                                        let baseURL = `https://social-network.samuraijs.com/api/1.0`;
+                                                        axios.delete(`${baseURL}/follow/${u.id}`, {
+                                                            withCredentials: true,
+                                                            headers: {
+                                                                'API-KEY': '57c8177e-0cc1-45bd-9287-f4d1570cbc36'
+                                                            },
+                                                        })
+                                                            .then((response) => {
+                                                                response.data.resultCode == 0 &&
+                                                                unfollow(u.id)
+                                                            })
+                                                    }
+                                                }>unfollow</SuperButton>
                                             : <SuperButton
                                                 className={u.followed ? styles.unfollowButton : styles.followButton}
-                                                onClick={() => {
-                                                    follow(u.id)
-                                                }}
-                                            >follow</SuperButton>
+                                                onClick={
+                                                    () => {
+                                                        let baseURL = `https://social-network.samuraijs.com/api/1.0`;
+                                                        axios.post(`${baseURL}/follow/${u.id}`, {}, {
+                                                            withCredentials: true,
+                                                            headers: {
+                                                                'API-KEY': '57c8177e-0cc1-45bd-9287-f4d1570cbc36'
+                                                            },
+                                                        })
+                                                            .then((response) => {
+                                                                response.data.resultCode == 0 &&
+                                                                follow(u.id);
+                                                            })
+                                                    }
+                                                }>follow</SuperButton>
                                         }
                                     </div>
                                 </div>
@@ -95,7 +120,7 @@ export const Users: FC<UserPropsType> = ({
                             </div>
                         )
                     })
-                    : <Preloader />
+                    : <Preloader/>
             }
             <div className={styles.showMoreButton}>
                 <SuperButton className={styles.superButton}>show more</SuperButton>

@@ -4,29 +4,25 @@ import axios from "axios";
 import {AppStateType} from "../Redux/redux-store";
 import {Users} from "./Users";
 import {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    UsersType,
+    follow, unfollow, setUsers, setCurrentPage,
+    setTotalUsersCount, toggleIsFetching, UsersType,
 } from "../Redux/users-reducer";
 
 
-type UsersContainerType = {
-    users: UsersType[]
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    setUsers: (users: UsersType[]) => void
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    setTotalUsersCount: (count: number) => void
-    setCurrentPage: (page: number) => void
-    isFetching: boolean
-    toggleIsFetching: (isFetching: boolean) => void
-}
+// type UsersContainerType = {
+//     users: UsersType[]
+//     follow: (userId: string) => void
+//     unfollow: (userId: string) => void
+//     setUsers: (users: UsersType[]) => void
+//     totalUsersCount: number
+//     pageSize: number
+//     currentPage: number
+//     setTotalUsersCount: (count: number) => void
+//     setCurrentPage: (page: number) => void
+//     isFetching: boolean
+//     toggleIsFetching: (isFetching: boolean) => void
+// }
+
 type MapStateToPropsType = {
     users: UsersType[]
     pageSize: number
@@ -34,15 +30,16 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
 }
+type MapDispatchToPropsType = {
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    setUsers: (users: UsersType[]) => void
+    setTotalUsersCount: (count: number) => void
+    setCurrentPage: (page: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
+}
+type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
 
-// type MapDispatchToPropsType = {
-//     follow: (userId: string) => void
-//     unfollow: (userId: string) => void
-//     setUsers: (users: UsersType[]) => void
-//     setTotalUsersCount: (count: number) => void
-//     setCurrentPage: (page: number) => void
-//     toggleIsFetching: (isFetching: boolean) => void
-// }
 
 export class UsersContainer extends Component<UsersContainerType, {}> {
 
