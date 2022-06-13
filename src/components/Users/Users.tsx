@@ -1,10 +1,10 @@
 import React, {FC} from "react";
 import {NavLink} from "react-router-dom";
-import {UsersType} from "../Redux/users-reducer";
+import {UsersType} from "../../Redux/users-reducer";
 import SuperButton from "../SuperButton/SuperButton";
 import styles from "./Users.module.css";
-import Preloader from "../common/preloader/Preloader";
-import axios from "axios";
+import Preloader from "../../common/preloader/Preloader";
+import {usersAPI} from "../../api/api";
 
 type UserPropsType = {
     users: UsersType[]
@@ -13,12 +13,14 @@ type UserPropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    onPageChanged: (p: number) => void
+    onPageChanged: (pageSize: number) => void
     isFetching: boolean
+    followingInProgress: boolean
+    toggleFollowingProgress: (toggle: boolean) => void
+
 }
 
 export const Users: FC<UserPropsType> = (props) => {
-
     let {
         users,
         follow,
@@ -28,6 +30,8 @@ export const Users: FC<UserPropsType> = (props) => {
         currentPage,
         onPageChanged,
         isFetching,
+        followingInProgress,
+        toggleFollowingProgress,
     } = props;
 
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
@@ -38,14 +42,14 @@ export const Users: FC<UserPropsType> = (props) => {
     return (
         <div className={styles.users}>
             <div className={styles.pagesContainer}>
-                {pages.map(p => {
+                {pages.map(page => {
                     return (
-                        <span key={p}
-                              className={currentPage === p ? `${styles.pagesCount} ${styles.selected}` : styles.pagesCount}
+                        <span key={page}
+                              className={currentPage === page ? `${styles.pagesCount} ${styles.selected}` : styles.pagesCount}
                               onClick={() => {
-                                  onPageChanged(p)
+                                  onPageChanged(page)
                               }}
-                        >{p}</span>
+                        >{page}</span>
                     )
                 })}
             </div>
@@ -68,38 +72,32 @@ export const Users: FC<UserPropsType> = (props) => {
                                     <div>
                                         {u.followed
                                             ? <SuperButton
+                                                disabled={followingInProgress}
                                                 className={u.followed ? styles.unfollowButton : styles.followButton}
-                                                onClick={
-                                                    () => {
-                                                        let baseURL = `https://social-network.samuraijs.com/api/1.0`;
-                                                        axios.delete(`${baseURL}/follow/${u.id}`, {
-                                                            withCredentials: true,
-                                                            headers: {
-                                                                'API-KEY': '57c8177e-0cc1-45bd-9287-f4d1570cbc36'
-                                                            },
-                                                        })
-                                                            .then((response) => {
-                                                                response.data.resultCode == 0 &&
+                                                onClick={() => {
+                                                    toggleFollowingProgress(true);
+                                                    usersAPI.unfollowUser(u.id)
+                                                        .then((data) => {
+                                                            if (data.resultCode === 0) {
                                                                 unfollow(u.id)
-                                                            })
-                                                    }
+                                                            }
+                                                            toggleFollowingProgress(false);
+                                                        });
+                                                }
                                                 }>unfollow</SuperButton>
                                             : <SuperButton
+                                                disabled={followingInProgress}
                                                 className={u.followed ? styles.unfollowButton : styles.followButton}
-                                                onClick={
-                                                    () => {
-                                                        let baseURL = `https://social-network.samuraijs.com/api/1.0`;
-                                                        axios.post(`${baseURL}/follow/${u.id}`, {}, {
-                                                            withCredentials: true,
-                                                            headers: {
-                                                                'API-KEY': '57c8177e-0cc1-45bd-9287-f4d1570cbc36'
-                                                            },
-                                                        })
-                                                            .then((response) => {
-                                                                response.data.resultCode == 0 &&
+                                                onClick={() => {
+                                                    toggleFollowingProgress(true);
+                                                    usersAPI.followUser(u.id)
+                                                        .then((data) => {
+                                                            if (data.resultCode === 0) {
                                                                 follow(u.id);
-                                                            })
-                                                    }
+                                                            }
+                                                            toggleFollowingProgress(false);
+                                                        });
+                                                }
                                                 }>follow</SuperButton>
                                         }
                                     </div>

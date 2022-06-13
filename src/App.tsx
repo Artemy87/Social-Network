@@ -2,14 +2,14 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import './App.css'
-import {News} from './News/News';
-import {Music} from './Music/Music';
-import {Settings} from './Settings/Settings';
-import {DialogsContainer} from "./Dialogs/DialogsContainer";
-import {NavbarContainer} from "./Navbar/NavbarContainer";
-import UsersContainer from "./Users/UsersContainer";
-import ProfileContainer from "./Profile/ProfileContainer";
-import HeaderContainer from "./Header/HeaderContainer";
+import {News} from './components/News/News';
+import {Music} from './components/Music/Music';
+import {Settings} from './components/Settings/Settings';
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import {NavbarContainer} from "./components/Navbar/NavbarContainer";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
     return (

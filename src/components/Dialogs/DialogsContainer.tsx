@@ -6,8 +6,8 @@ import {
     InitialStateType,
     sendMessageCreator,
     updateNewMessageBodyCreator
-} from "../Redux/dialogs-reducer";
-import {AppActionsType, AppStateType} from "../Redux/redux-store";
+} from "../../Redux/dialogs-reducer";
+import {AppActionsType, AppStateType} from "../../Redux/redux-store";
 
 type MapStateToPropsType = {
     dialogsPage: InitialStateType

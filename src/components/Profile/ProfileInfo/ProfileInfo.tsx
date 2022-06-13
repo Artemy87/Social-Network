@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from './ProfileInfo.module.css';
 import {ProfileUserType} from "../ProfileContainer";
-import Preloader from "../../common/preloader/Preloader";
+import Preloader from "../../../common/preloader/Preloader";
 
 type ProfileInfoType = {
     profile: ProfileUserType | null

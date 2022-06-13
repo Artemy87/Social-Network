@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ProfileUserType} from "../Profile/ProfileContainer";
+import {ProfileUserType} from "../components/Profile/ProfileContainer";
 // import {ProfileContainerType} from "../Profile/ProfileContainer";
 
 export type PostsType = {
