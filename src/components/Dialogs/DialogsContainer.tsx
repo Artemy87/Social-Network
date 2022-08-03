@@ -1,31 +1,15 @@
 import React from 'react';
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
-import {
-    InitialStateType,
-    sendMessageCreator,
-    updateNewMessageBodyCreator
-} from "../../Redux/dialogs-reducer";
+import {InitialStateType, sendMessageCreator, updateNewMessageBodyCreator} from "../../Redux/dialogs-reducer";
 import {AppActionsType, AppStateType} from "../../Redux/redux-store";
-
-type MapStateToPropsType = {
-    dialogsPage: InitialStateType
-    newMessageBody: string
-}
-
-type MapDispatchToPropsType = {
-    onSendMessage: () => void
-    onUpdateMessage: (body: string) => void
-}
-
-export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageBody: state.dialogsPage.newMessageBody
-
+        newMessageBody: state.dialogsPage.newMessageBody,
     };
 }
 
@@ -40,6 +24,19 @@ let mapDispatchToProps = (dispatch: Dispatch<AppActionsType>): MapDispatchToProp
     };
 }
 
-export const DialogsContainer = connect(
-        mapStateToProps, mapDispatchToProps)(Dialogs)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect // защищает вкладку Dialogs от незалогиненного пользователя
+)(Dialogs);
+
+//types
+type MapStateToPropsType = {
+    dialogsPage: InitialStateType
+    newMessageBody: string
+}
+type MapDispatchToPropsType = {
+    onSendMessage: () => void
+    onUpdateMessage: (body: string) => void
+}
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 

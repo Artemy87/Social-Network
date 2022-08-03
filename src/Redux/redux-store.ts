@@ -1,11 +1,11 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from 'redux-thunk'; // middleware
 
 import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
 import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {UsersActionType, usersReducer} from "./users-reducer";
 import {AuthActionsType, authReducer} from "./auth-reducer";
-
 
 // interface DialogsPageType {
 //     dialogs: DialogType[];
@@ -38,13 +38,11 @@ import {AuthActionsType, authReducer} from "./auth-reducer";
 //     id: string
 //     name: string
 // }
-
 // export interface RootStateType {
 //     dialogsPage: DialogsPageType
 //     profilePage: PostsPageType
 //     sidebar: SidebarType
 // }
-
 // export type StoreType = {
 //     _state: RootStateType
 //     _callSubscribe: () => void
@@ -69,7 +67,7 @@ let rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export let store = createStore(rootReducer);
+export let store = createStore(rootReducer, applyMiddleware(thunk));
 
 //@ts-ignore
 window.store = store;

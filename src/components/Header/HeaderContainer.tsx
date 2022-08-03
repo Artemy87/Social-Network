@@ -1,54 +1,41 @@
 import React, {Component} from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-
-import {AppActionsType, AppStateType} from "../../Redux/redux-store";
-import {setAuthUserDataAC} from "../../Redux/auth-reducer";
-import {usersAPI} from "../../api/api";
-import {Dispatch} from "redux";
-
-type MapStateToPropsType = {
-    login: string | null
-    isAuth: boolean
-};
-type MapDispatchPropsType = {
-    setAuthUserData: (id: number, email: string, login: string) => void
-}
-type HeaderPropsType = MapDispatchPropsType & MapStateToPropsType
+import {AppStateType} from "../../Redux/redux-store";
+import {getAuthUserData} from "../../Redux/auth-reducer";
 
 class HeaderContainer extends Component<HeaderPropsType> {
 
     componentDidMount() {
-        usersAPI.auth()
-            .then(data => {
-                if(data.resultCode === 0) {
-                    let {login, id, email} = data.data;
-                    this.props.setAuthUserData(id, email, login);
-                }
-            })
+        // thunkCreator, который возвращает и вызывает санку(thunk)
+        this.props.getAuthUserData();
     }
 
     render() {
         return (
-            // <Header {...this.props}/>
-            <Header login={this.props.login} isAuth={this.props.isAuth}/>
+            <Header {...this.props}/>
         )
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+type MapStatePropsType = {
+    login: string | null
+    isAuth: boolean
+};
+type MapDispatchPropsType = {
+    getAuthUserData: () => void
+}
+type HeaderPropsType = MapDispatchPropsType & MapStatePropsType
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     login: state.auth.login,
     isAuth: state.auth.isAuth
 });
-const mapDispatchToProps = (dispatch: Dispatch<AppActionsType>):MapDispatchPropsType => {
-    return {
-        setAuthUserData: (id: number, email: string, login: string) => {
-            dispatch(setAuthUserDataAC(id, email, login))
-        }
-    }
-}
+
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+        getAuthUserData
+    }
 )(HeaderContainer);

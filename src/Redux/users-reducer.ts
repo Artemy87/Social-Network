@@ -1,20 +1,4 @@
-export type UsersType = {
-    id: string
-    name: string
-    photosUrl?: string
-    photos?: {small: string}
-    followed: boolean
-    status: string
-    location: {city: string, country: string}
-}
-export type InitialStateType = {
-    users: UsersType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: boolean
-}
+import {usersAPI} from "../api/api";
 
 const initialState = {
     users: [],
@@ -25,7 +9,7 @@ const initialState = {
     followingInProgress: false
 }
 
-export const usersReducer = (state:InitialStateType = initialState, action:UsersActionType): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: UsersActionType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW": {
             return {
@@ -34,7 +18,8 @@ export const usersReducer = (state:InitialStateType = initialState, action:Users
                     el.id === action.id
                         ? {...el, followed: true}
                         : el
-                )}
+                )
+            }
         }
         case "UNFOLLOW": {
             return {
@@ -43,7 +28,8 @@ export const usersReducer = (state:InitialStateType = initialState, action:Users
                     el.id === action.id
                         ? {...el, followed: false}
                         : el
-                )}
+                )
+            }
         }
         case "SET-USERS": {
             return {
@@ -65,23 +51,16 @@ export const usersReducer = (state:InitialStateType = initialState, action:Users
             return {...state, followingInProgress: action.toggle}
         }
 
-        default : return state
+        default :
+            return state
     }
 }
 
-export type UsersActionType =
-    ReturnType<typeof follow> |
-    ReturnType<typeof unfollow> |
-    ReturnType<typeof setUsers> |
-    ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalUsersCount> |
-    ReturnType<typeof toggleIsFetching> |
-    ReturnType<typeof toggleFollowingProgress>
 
-export const follow = (id: string) => {
+export const followSuccess = (id: string) => {
     return {type: 'FOLLOW', id} as const
 }
-export const unfollow = (id: string) => {
+export const unfollowSuccess = (id: string) => {
     return {type: 'UNFOLLOW', id} as const
 }
 export const setUsers = (users: UsersType[]) => {
@@ -102,3 +81,75 @@ export const toggleFollowingProgress = (toggle: boolean) => {
         toggle
     } as const
 }
+
+// thunk
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: any): any => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+                // dispatch(setCurrentPage(pageNumber));
+            });
+    };
+}
+
+// thunk
+export const unfollow = (userId: string) => {
+    return (dispatch: any): any => {
+        dispatch(toggleFollowingProgress(true));
+
+        usersAPI.unfollowUser(userId)
+            .then((res) => {
+                if (res.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowingProgress(false));
+            });
+    }
+}
+
+//thunk
+export const follow = (userId: string) => {
+    return (dispatch: any): any => {
+        dispatch(toggleFollowingProgress(true));
+
+        usersAPI.followUser(userId)
+            .then((res) => {
+                if (res.data.resultCode === 0) {
+                    dispatch(followSuccess(userId));
+                }
+                dispatch(toggleFollowingProgress(false));
+            });
+    }
+}
+
+export type UsersType = {
+    id: string
+    name: string
+    photosUrl?: string
+    photos?: { small: string }
+    followed: boolean
+    status: string
+    location: { city: string, country: string }
+}
+export type InitialStateType = {
+    users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: boolean
+}
+
+export type UsersActionType =
+    ReturnType<typeof followSuccess> |
+    ReturnType<typeof unfollowSuccess> |
+    ReturnType<typeof setUsers> |
+    ReturnType<typeof setCurrentPage> |
+    ReturnType<typeof setTotalUsersCount> |
+    ReturnType<typeof toggleIsFetching> |
+    ReturnType<typeof toggleFollowingProgress>

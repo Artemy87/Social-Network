@@ -1,5 +1,4 @@
 import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
-
 import {DialogsItem} from './DialogsItem/DialogsItem';
 import {Message} from './Message/Message';
 import SuperInputText from "../SuperInputText/SuperInputText";
