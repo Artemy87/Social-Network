@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {UsersType} from "../../Redux/users-reducer";
 import SuperButton from "../SuperButton/SuperButton";
 import styles from "./Users.module.css";
-import Preloader from "../../common/preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 
 type UserPropsType = {
     users: UsersType[]

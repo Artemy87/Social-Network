@@ -5,6 +5,7 @@ import {getUserProfile, getStatus, updateStatus} from "../../Redux/profile-reduc
 import {AppStateType} from "../../Redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export class ProfileContainer extends Component<ProfileContainerType> {
 
@@ -37,7 +38,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
-    // withAuthRedirect, // защищает вкладку Profile от незалогиненного пользователя
+    withAuthRedirect, // защищает вкладку Profile от незалогиненного пользователя
     withRouter
 )(ProfileContainer)
 

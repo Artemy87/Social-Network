@@ -12,20 +12,22 @@ class LoginContainer extends Component<HeaderPropsType> {
     }
 }
 
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+
+});
+
+export default connect(
+    mapStateToProps,
+    {}
+)(LoginContainer);
+
+
+//type
 type MapStatePropsType = {
 
 };
 type MapDispatchPropsType = {
 
 }
-type HeaderPropsType = MapDispatchPropsType & MapStatePropsType
+export type HeaderPropsType = MapDispatchPropsType & MapStatePropsType
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-
-});
-
-
-export default connect(
-    mapStateToProps,
-    {}
-)(LoginContainer);

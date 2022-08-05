@@ -4,16 +4,16 @@
     overflow: auto;
 }
 
-.postForm {
-    background-color: #d8ead7;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0 0 10px 0;
-}
+/*.postForm {*/
+/*    background-color: #d8ead7;*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    border-radius: 0 0 10px 0;*/
+/*}*/
 
-.sendPostForm {
-    display: flex;
-    flex-direction: row;
-}
+/*.sendPostForm {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/

@@ -1,37 +1,26 @@
-import React, {ChangeEvent, FC, KeyboardEvent} from 'react';
+import React, {FC} from 'react';
 import {Post} from './Post/Post';
-import SuperInputText from "../../SuperInputText/SuperInputText";
-import SuperButton from "../../SuperButton/SuperButton";
 import s from './MyPosts.module.css';
 import {MyPostsPropsType} from "./MyPostsContainer";
+import {reduxForm} from "redux-form";
+import {AddNewMyPostForm} from "./AddNewMyPostForm/AddNewMyPostForm";
 
-
-export const MyPosts: FC<MyPostsPropsType> = (
-    {
-        posts,
-        newPostText,
-        addPost,
-        updatePost
-    }) => {
+export const MyPosts: FC<MyPostsPropsType> = ({
+                                                  posts,
+                                                  addPost,
+                                              }
+) => {
 
     let postsElements = posts.map(post => {
-            // debugger
             return (
                 <Post key={post.id} post={post}/>
             )
         }
     )
 
-    const onAddPostHandler = () => {
-        newPostText.trim() !== '' && addPost()
-    }
-
-    const onChangePostHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        updatePost(e.currentTarget.value)
-    }
-
-    const onKeyPressPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        (e.key === 'Enter' && newPostText.trim() !== '') && addPost()
+    const onAddPost = (value: FormMyPostsDataType) => {
+        console.log(value)
+        addPost(value.newPostText)
     }
 
     return (
@@ -39,14 +28,14 @@ export const MyPosts: FC<MyPostsPropsType> = (
             <div className={s.post}>
                 {postsElements}
             </div>
-            <div className={s.postForm}>
-                <div className={s.sendPostForm}>
-                    <SuperInputText value={newPostText}
-                                    onChange={onChangePostHandler}
-                                    onKeyPress={onKeyPressPostHandler}/>
-                    <SuperButton onClick={onAddPostHandler}>add post</SuperButton>
-                </div>
-            </div>
+            <ReduxMyPostForm onSubmit={onAddPost}/>
         </div>
     )
+}
+
+const ReduxMyPostForm = reduxForm<FormMyPostsDataType>({form: 'profileAddNewPostForm'})(AddNewMyPostForm);
+
+//types
+export type FormMyPostsDataType = {
+    newPostText: string
 }
