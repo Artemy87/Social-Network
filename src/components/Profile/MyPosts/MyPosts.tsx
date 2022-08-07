@@ -19,7 +19,6 @@ export const MyPosts: FC<MyPostsPropsType> = ({
     )
 
     const onAddPost = (value: FormMyPostsDataType) => {
-        console.log(value)
         addPost(value.newPostText)
     }
 

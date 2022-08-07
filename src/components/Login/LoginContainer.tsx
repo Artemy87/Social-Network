@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import {Login} from "./Login";
-import {connect} from "react-redux";
-import {AppStateType} from "../../Redux/redux-store";
+import Login from "./Login";
 
-class LoginContainer extends Component<HeaderPropsType> {
-
+export default class LoginContainer extends Component<HeaderPropsType> {
     render() {
         return (
             <Login {...this.props}/>
@@ -12,22 +9,20 @@ class LoginContainer extends Component<HeaderPropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+// const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+//     return {}
+// };
 
-});
 
-export default connect(
-    mapStateToProps,
-    {}
-)(LoginContainer);
+// убрать export, 6 строка!!!!!!!!
+// export default connect(
+//     mapStateToProps,
+//     {}
+// )(LoginContainer);
 
 
 //type
-type MapStatePropsType = {
-
-};
-type MapDispatchPropsType = {
-
-}
-export type HeaderPropsType = MapDispatchPropsType & MapStatePropsType
+type MapStatePropsType = {};
+type MapDispatchPropsType = {};
+export type HeaderPropsType = MapDispatchPropsType & MapStatePropsType;
 

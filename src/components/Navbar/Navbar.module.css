@@ -1,5 +1,4 @@
 .navbarContainer {
-
 }
 
 .navbar {
@@ -15,7 +14,7 @@
     letter-spacing: 1px;
     padding: 5px 10px;
     /*border-right: 1px solid #bfd7bd;*/
-    border-left: 1px solid #ecf1ec;
+    /*border-left: 15px solid #819481;*/
 }
 .navbar a:focus {
     background-color: #f3f7ff;

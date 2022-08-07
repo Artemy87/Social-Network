@@ -22,8 +22,6 @@ export const Profile: FC<ProfilePropsType> = ({
 
 //types
 type ProfilePropsType = {
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
     profile: ProfileUserType | null
     updateStatus: (status: string) => void
     status: string

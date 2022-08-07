@@ -53,10 +53,10 @@ import {AuthActionsType, authReducer} from "./auth-reducer";
 // }
 
 export type AppActionsType =
-    DialogsActionsType |
-    ProfileActionsTypes |
-    UsersActionType |
-    AuthActionsType
+    | DialogsActionsType
+    | ProfileActionsTypes
+    | UsersActionType
+    | AuthActionsType
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

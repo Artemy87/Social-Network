@@ -146,10 +146,10 @@ export type InitialStateType = {
 }
 
 export type UsersActionType =
-    ReturnType<typeof followSuccess> |
-    ReturnType<typeof unfollowSuccess> |
-    ReturnType<typeof setUsers> |
-    ReturnType<typeof setCurrentPage> |
-    ReturnType<typeof setTotalUsersCount> |
-    ReturnType<typeof toggleIsFetching> |
-    ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowingProgress>

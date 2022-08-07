@@ -9,29 +9,6 @@ import {
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
-
-type MapStateToPropsType = {
-    users: UsersType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: boolean
-}
-type MapDispatchToPropsType = {
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    // setUsers: (users: UsersType[]) => void
-    // setTotalUsersCount: (count: number) => void
-    setCurrentPage: (page: number) => void
-    // toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress: (toggle: boolean) => void
-    getUsers: (pageSize: number, currentPage: number) => void
-    // addUsersThunkCreator: (pageSize: number, currentPage: number) => (dispatch: any) => void
-}
-type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
-
-
 export class UsersContainer extends Component<UsersContainerType, {}> {
 
     componentDidMount() {
@@ -55,7 +32,6 @@ export class UsersContainer extends Component<UsersContainerType, {}> {
                 unfollow={this.props.unfollow}
                 isFetching={this.props.isFetching}
                 followingInProgress={this.props.followingInProgress}
-                // toggleFollowingProgress={this.props.toggleFollowingProgress}
             />
         )
     }
@@ -85,6 +61,29 @@ export default compose<React.ComponentType>(
     ),
     withAuthRedirect // защищает вкладку Users от незалогиненного пользователя
 )(UsersContainer)
+
+//types
+type MapStateToPropsType = {
+    users: UsersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: boolean
+}
+type MapDispatchToPropsType = {
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    // setUsers: (users: UsersType[]) => void
+    // setTotalUsersCount: (count: number) => void
+    setCurrentPage: (page: number) => void
+    // toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowingProgress: (toggle: boolean) => void
+    getUsers: (pageSize: number, currentPage: number) => void
+    // addUsersThunkCreator: (pageSize: number, currentPage: number) => (dispatch: any) => void
+}
+type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
+
 
 // альтернативная типизация state
 // const mapStateToProps = ({usersPage}: {usersPage: InitialStateType}): MapStateToPropsType => {

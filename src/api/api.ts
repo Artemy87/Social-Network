@@ -8,7 +8,7 @@ const instance = axios.create({
     },
 })
 
-// мой id  в соцсети 23660
+// Мой id в соцсети 23660.
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -29,7 +29,7 @@ export const usersAPI = {
     }
 }
 
-// мой id  в соцсети 23660
+// Мой id в соцсети 23660.
 export const profileAPI = {
     getProfile(userId: string) {
         return instance.get<ResponseProfileType>(`profile/${userId}`);
@@ -46,8 +46,15 @@ export const authAPI = {
     me() {
         return instance.get(`auth/me`)
     },
+    login(email: string, password: string, rememberMe: boolean = false) {
+        return instance.post<LoginType>(`auth/login`, {email, password, rememberMe});
+    },
+    logout() {
+        return instance.delete(`auth/login`);
+    }
 }
 
+//type
 export type ResponseProfileType = {
     aboutMe: string
     contacts: {
@@ -68,4 +75,15 @@ export type ResponseProfileType = {
         large: string
     }
     userId: number
+}
+export type LoginType = {
+    data: {}
+    messages: string[]
+    fieldsErrors: [
+        {
+            field: string
+            error: string
+        }
+    ],
+    resultCode: number
 }

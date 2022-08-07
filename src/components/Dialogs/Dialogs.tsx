@@ -12,7 +12,6 @@ export const Dialogs: FC<DialogsPropsType> = (
         onSendMessage,
     }) => {
     const addNewMessage = (value: FormDialogsDataType) => {
-        console.log(value.newMessageBody)
         onSendMessage(value.newMessageBody);
     }
 
