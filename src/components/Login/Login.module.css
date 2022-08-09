@@ -48,25 +48,6 @@
     border-radius: 5px;
 }
 
-/*
-.loginContainer {
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-    background: #fafafa;
-    padding: 10px;
-    height: 700px;
+.formSummaryError {
+    color: red;
 }
-
-.phraseStart {
-    color: #d7d700;
-    font-size: 2.5rem;
-    margin-top: 200px;
-}
-
-.phraseEnd {
-    color: #b0a1ad;
-    font-size: 2.8rem;
-    margin-top: 210px;
-    margin-left: 15px;
-}*/

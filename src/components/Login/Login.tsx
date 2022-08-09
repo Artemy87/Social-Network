@@ -8,7 +8,6 @@ import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../Redux/redux-store";
 import s from './Login.module.css';
 
-
 const Login: FC<LoginPropsType> = (props) => {
 
     const onSubmit = (formData: FormLoginDataType) => {
@@ -50,6 +49,7 @@ const LoginForm: FC<InjectedFormProps<FormLoginDataType>> = (props) => { // ти
                        component={Input}/>
                 <div>remember me</div>
             </div>
+            {props.error && <div className={s.formSummaryError}>{props.error}</div>}
             <div className={s.buttonContainer}>
                 <button >Login</button>
             </div>
@@ -58,6 +58,7 @@ const LoginForm: FC<InjectedFormProps<FormLoginDataType>> = (props) => { // ти
 }
 
 const ReduxLoginForm = reduxForm<FormLoginDataType>({form: 'login'})(LoginForm);
+
 
 const mapStateToProps = (state: AppStateType): mapStateToProps  => ({
     isAuth: state.auth.isAuth
@@ -79,3 +80,35 @@ type FormLoginDataType = {
 type mapStateToProps = {
     isAuth: boolean
 }
+
+
+/*
+type Inputs = {
+    email: string
+    password: string
+}
+
+const LoginForm = () => { // типизация redux-form
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+
+    return <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={s.loginInput}>
+                <input defaultValue='test' {...register("email")}/>
+            </div>
+            <div className={s.passwordInput}>
+                <input {...register('password')} />
+            </div>
+            <div className={s.checkboxContainer}>
+                <input type={"checkbox"} />
+                <div>remember me</div>
+            </div>
+            {errors && <span className={s.formSummaryError}>This fields is required</span>}
+            <div className={s.buttonContainer}>
+                <button >Login</button>
+            </div>
+        </form>
+    </div>
+}*/

@@ -13,18 +13,15 @@
     color: #073c67;
     letter-spacing: 1px;
     padding: 5px 10px;
-    /*border-right: 1px solid #bfd7bd;*/
-    /*border-left: 15px solid #819481;*/
+}
+.navbar a:hover {
+    background-color: #f8fbff;
+    color: #e850ff;
 }
 .navbar a:focus {
-    background-color: #f3f7ff;
+    background-color: #bec5d7;
     font-weight: bold;
 }
-
-/*.navbar a:hover {*/
-/*    font-weight: bold;*/
-/*    color: forestgreen;*/
-/*}*/
 
 .friends {
     display: flex;
@@ -34,13 +31,14 @@
 }
 
 .titleFriends {
-    background-color: #d9e1d7;
     font-size: 1.3em;
+    text-transform: uppercase;
     margin-top: 50px;
     padding: 10px;
     color: #62748d;
-    letter-spacing: 5px;
+    letter-spacing: .5em;
     font-weight: bold;
+    border-top: 1px solid grey;
 }
 
 img {
